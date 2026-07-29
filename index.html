@@ -111,16 +111,6 @@
             width: 100%;
             height: 100%;
         }
-        .img-fit-card {
-            object-fit: cover;
-            width: 100%;
-            height: 160px;
-        }
-        .img-fit-hover {
-            object-fit: cover;
-            width: 100%;
-            height: 120px;
-        }
 
         .glass {
             background: rgba(17, 17, 19, 0.7);
@@ -212,6 +202,63 @@
                 margin-top: 0.5rem;
             }
         }
+
+        /* Blue highlight button for Resume */
+        .resume-btn {
+            background: rgba(74, 108, 247, 0.15);
+            border: 1px solid rgba(74, 108, 247, 0.4);
+            border-radius: 9999px;
+            padding: 0.25rem 1rem;
+            transition: all 0.2s ease;
+        }
+        .resume-btn:hover {
+            background: rgba(74, 108, 247, 0.3);
+            border-color: #4A6CF7;
+            box-shadow: 0 0 20px rgba(74, 108, 247, 0.2);
+        }
+        /* Image fit fix for Lessons cards */
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .project-img-wrap {
+            width: 100%;
+            height: 192px;
+            overflow: hidden;
+        }
+        .about-img-wrap {
+            width: 100%;
+            height: 128px;
+            overflow: hidden;
+        }
+        .about-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .about-img-contain {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        /* Timeline hover image fit */
+        .hover-img {
+            width: 100%;
+            height: 96px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+        .hover-img-contain {
+            width: 100%;
+            height: 96px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            background: rgba(17, 17, 19, 0.5);
+        }
     </style>
 </head>
 
@@ -228,7 +275,10 @@
             <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
                 <a href="#map" class="hover:text-brand-light transition">My Path</a>
                 <a href="#lessons" class="hover:text-brand-light transition">Projects</a>
-                <a href="Jose%20M.%20Arreaga%20Resume.pdf" target="_blank" class="hover:text-brand-light transition">Resume</a>
+                <!-- Resume as Blue Highlight Button -->
+                <a href="assets/Jose%20M.%20Arreaga%20Resume.pdf" target="_blank" class="resume-btn text-brand hover:text-white transition flex items-center gap-2">
+                    <i class="fas fa-file-pdf text-brand"></i> Resume
+                </a>
                 <a href="#contact" class="hover:text-brand-light transition">Contact</a>
                 
                 <button onclick="toggleTheme()" class="theme-toggle text-gray-400 hover:text-brand transition text-lg" aria-label="Toggle theme">
@@ -249,7 +299,9 @@
                 <div class="absolute right-4 top-16 w-48 glass rounded-xl border border-brand/30 p-4 flex flex-col space-y-3 text-sm">
                     <a href="#map" class="hover:text-brand-light transition">My Path</a>
                     <a href="#lessons" class="hover:text-brand-light transition">Projects</a>
-                    <a href="Jose%20M.%20Arreaga%20Resume.pdf" target="_blank" class="hover:text-brand-light transition">Resume</a>
+                    <a href="assets/Jose%20M.%20Arreaga%20Resume.pdf" target="_blank" class="resume-btn text-brand hover:text-white transition flex items-center gap-2 justify-center">
+                        <i class="fas fa-file-pdf text-brand"></i> Resume
+                    </a>
                     <a href="#contact" class="hover:text-brand-light transition">Contact</a>
                     <div class="flex items-center justify-between pt-2 border-t border-dark-700">
                         <button onclick="toggleTheme()" class="text-gray-400 hover:text-brand transition">
@@ -329,7 +381,7 @@
                         <p class="text-xs text-gray-500">Blade heat transfer · 3D modeling · Flow chamber testing</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
-                                <img src="assets/HW-Plenum.png" alt="HW Plenum" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <img src="assets/HW-Plenum.png" alt="HW Plenum" class="hover-img-contain"/>
                                 <p class="text-xs text-gray-300">Researched turbine blade cooling efficiency and plenum designs.</p>
                             </div>
                         </div>
@@ -344,7 +396,7 @@
                         <p class="text-xs text-gray-500">GPA: 3.10</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
-                                <img src="assets/UC.png" alt="UC" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <img src="assets/UC.png" alt="UC" class="hover-img-contain"/>
                                 <p class="text-xs text-gray-300">Hands-on labs, thermodynamics, fluid mechanics, and materials.</p>
                             </div>
                         </div>
@@ -360,7 +412,7 @@
                         <p class="text-xs text-gray-500">Advanced aerodynamics · CFD analysis · Blade design</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
-                                <img src="assets/Cooling-Turbine-Blade.png" alt="Cooling Turbine Blade" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <img src="assets/Cooling-Turbine-Blade.png" alt="Cooling Turbine Blade" class="hover-img-contain"/>
                                 <p class="text-xs text-gray-300">Optimized turbine blade profiles for improved cooling efficiency.</p>
                             </div>
                         </div>
@@ -375,7 +427,7 @@
                         <p class="text-xs text-gray-500">Co-op rotations</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
-                                <img src="assets/UC.png" alt="UC" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <img src="assets/UC.png" alt="UC" class="hover-img-contain"/>
                                 <p class="text-xs text-gray-300">Balanced academic coursework with industry co-op experience.</p>
                             </div>
                         </div>
@@ -391,7 +443,7 @@
                         <p class="text-xs text-gray-500">Particle impact · Erosion prevention · Material testing</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
-                                <img src="assets/Dus-Turbine-Blade.png" alt="Dust Turbine Blade" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <img src="assets/Dus-Turbine-Blade.png" alt="Dust Turbine Blade" class="hover-img-contain"/>
                                 <p class="text-xs text-gray-300">Tested coatings to reduce particle impact damage on turbine blades.</p>
                             </div>
                         </div>
@@ -406,7 +458,7 @@
                         <p class="text-xs text-gray-500">Co-op rotations</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
-                                <img src="assets/UC.png" alt="UC" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <img src="assets/UC.png" alt="UC" class="hover-img-contain"/>
                                 <p class="text-xs text-gray-300">Continued academic excellence while gaining industrial experience.</p>
                             </div>
                         </div>
@@ -422,7 +474,7 @@
                         <p class="text-xs text-gray-500">600+ sensors · SQL DB · 3D modeling · Test systems</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
-                                <img src="assets/GE9x.png" alt="GE9x" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <img src="assets/GE9x.png" alt="GE9x" class="hover-img-contain"/>
                                 <p class="text-xs text-gray-300">Designed instrumentation layouts and optimized sensor routing.</p>
                             </div>
                         </div>
@@ -437,7 +489,7 @@
                         <p class="text-xs text-gray-500">GPA: 3.10</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
-                                <img src="assets/Graduation-Bachelors.jpg" alt="Graduation" class="w-full h-24 object-cover rounded-lg mb-2"/>
+                                <img src="assets/Graduation-Bachelors.jpg" alt="Graduation" class="hover-img"/>
                                 <p class="text-xs text-gray-300">Completed degree with co-op experience across 3 GE rotations.</p>
                             </div>
                         </div>
@@ -453,7 +505,7 @@
                         <p class="text-xs text-gray-500">China Lake, CA</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
-                                <img src="assets/Super-Hornet.png" alt="Super Hornet" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <img src="assets/Super-Hornet.png" alt="Super Hornet" class="hover-img-contain"/>
                                 <p class="text-xs text-gray-300">Flight safety, aircrew coordination, and database management.</p>
                             </div>
                         </div>
@@ -468,7 +520,7 @@
                         <p class="text-xs text-gray-500">GPA: 3.90</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
-                                <img src="assets/WashU.png" alt="WashU" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <img src="assets/WashU.png" alt="WashU" class="hover-img-contain"/>
                                 <p class="text-xs text-gray-300">Spacecraft dynamics, control systems, and advanced propulsion.</p>
                             </div>
                         </div>
@@ -484,7 +536,7 @@
                         <p class="text-xs text-gray-500">St. Louis, MO</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
-                                <img src="assets/Growler.png" alt="Growler" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <img src="assets/Growler.png" alt="Growler" class="hover-img-contain"/>
                                 <p class="text-xs text-gray-300">EA-18G, RF integration, MBSE (Cameo), Jira workflows.</p>
                             </div>
                         </div>
@@ -502,7 +554,7 @@
                         </ul>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
-                                <img src="assets/LA-Volunteer.jpg" alt="Volunteer" class="w-full h-24 object-cover rounded-lg mb-2"/>
+                                <img src="assets/LA-Volunteer.jpg" alt="Volunteer" class="hover-img"/>
                                 <p class="text-xs text-gray-300">Community engagement, robotics coaching, STEM advocacy.</p>
                             </div>
                         </div>
@@ -518,7 +570,7 @@
                         <p class="text-xs text-gray-500">El Segundo, CA</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
-                                <img src="assets/Satellite-Icon.png" alt="Satellite" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <img src="assets/Satellite-Icon.png" alt="Satellite" class="hover-img-contain"/>
                                 <p class="text-xs text-gray-300">Satellite I&T, RF, SIL/HIL, and Technical Leadership.</p>
                             </div>
                         </div>
@@ -537,8 +589,7 @@
                         </ul>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
-                                <!-- Stock engineering leadership photo (team collaboration) -->
-                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=300&h=200&fit=crop&crop=center" alt="Engineering Leadership" class="w-full h-24 object-cover rounded-lg mb-2"/>
+                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=300&h=200&fit=crop&crop=center" alt="Engineering Leadership" class="hover-img"/>
                                 <p class="text-xs text-gray-300">Resume coaching, professional networking, career guidance.</p>
                             </div>
                         </div>
@@ -564,8 +615,8 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Card 1: Satellite I&T -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/50 transition group">
-                    <div class="w-full h-48 overflow-hidden">
-                        <img src="assets/Satellite-Test.jpg" alt="Satellite I&T" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"/>
+                    <div class="project-img-wrap">
+                        <img src="assets/Satellite-Test.jpg" alt="Satellite I&T" class="project-img group-hover:scale-105"/>
                     </div>
                     <div class="p-5">
                         <h3 class="text-xl font-bold text-white">Satellite I&T</h3>
@@ -579,8 +630,8 @@
 
                 <!-- Card 2: Flight Test Engineering -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/50 transition group">
-                    <div class="w-full h-48 overflow-hidden">
-                        <img src="assets/FTE.JPG" alt="Flight Test Engineering" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"/>
+                    <div class="project-img-wrap">
+                        <img src="assets/FTE.JPG" alt="Flight Test Engineering" class="project-img group-hover:scale-105"/>
                     </div>
                     <div class="p-5">
                         <h3 class="text-xl font-bold text-white">Flight Test Engineering</h3>
@@ -594,8 +645,8 @@
 
                 <!-- Card 3: CAD/FEA Mechanical Design -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/50 transition group">
-                    <div class="w-full h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1542296332-2e4473faf563?w=600&h=400&fit=crop" alt="Commercial Airplane" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"/>
+                    <div class="project-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1542296332-2e4473faf563?w=600&h=400&fit=crop" alt="Commercial Airplane" class="project-img group-hover:scale-105"/>
                     </div>
                     <div class="p-5">
                         <h3 class="text-xl font-bold text-white">CAD/FEA Mechanical Design</h3>
@@ -619,14 +670,13 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-white">
                     <i class="fas fa-user-astronaut text-brand mr-3"></i><span id="about-title">About Me</span>
                 </h2>
-                <p class="text-gray-400 mt-2"><span id="about-subtitle">Mentorship · Tutoring · Volunteer · Familia · Polaroids · Summer Aerospace Games · Vintage 80s Tech · Languages</span></p>
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
-                    <div class="w-full h-32 overflow-hidden">
-                        <img src="assets/Mentorship.png" alt="Mentorship" class="w-full h-full object-cover"/>
+                    <div class="about-img-wrap">
+                        <img src="assets/Mentorship.png" alt="Mentorship" class="about-img"/>
                     </div>
                     <div class="p-3">
                         <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-chalkboard-user mr-1"></i>Mentorship</h4>
@@ -635,8 +685,8 @@
                 </div>
 
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
-                    <div class="w-full h-32 overflow-hidden">
-                        <img src="assets/Tutoring.png" alt="Tutoring" class="w-full h-full object-cover"/>
+                    <div class="about-img-wrap">
+                        <img src="assets/Tutoring.png" alt="Tutoring" class="about-img"/>
                     </div>
                     <div class="p-3">
                         <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-chalkboard mr-1"></i>Tutoring</h4>
@@ -645,8 +695,8 @@
                 </div>
 
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
-                    <div class="w-full h-32 overflow-hidden">
-                        <img src="assets/LA-Volunteer.jpg" alt="Volunteer" class="w-full h-full object-cover"/>
+                    <div class="about-img-wrap">
+                        <img src="assets/LA-Volunteer.jpg" alt="Volunteer" class="about-img"/>
                     </div>
                     <div class="p-3">
                         <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-hand-holding-heart mr-1"></i>Volunteer</h4>
@@ -655,8 +705,8 @@
                 </div>
 
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
-                    <div class="w-full h-32 overflow-hidden">
-                        <img src="assets/Familia.png" alt="Familia" class="w-full h-full object-cover"/>
+                    <div class="about-img-wrap">
+                        <img src="assets/Familia.png" alt="Familia" class="about-img"/>
                     </div>
                     <div class="p-3">
                         <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-people-group mr-1"></i>Familia</h4>
@@ -665,8 +715,8 @@
                 </div>
 
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
-                    <div class="w-full h-32 overflow-hidden">
-                        <img src="assets/Polaroid.png" alt="Polaroids" class="w-full h-full object-cover"/>
+                    <div class="about-img-wrap">
+                        <img src="assets/Polaroid.png" alt="Polaroids" class="about-img"/>
                     </div>
                     <div class="p-3">
                         <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-camera mr-1"></i>Polaroids</h4>
@@ -675,8 +725,8 @@
                 </div>
 
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
-                    <div class="w-full h-32 overflow-hidden">
-                        <img src="assets/AeroSpace-Games.jpg" alt="Aerospace Games" class="w-full h-full object-cover"/>
+                    <div class="about-img-wrap">
+                        <img src="assets/AeroSpace-Games.jpg" alt="Aerospace Games" class="about-img"/>
                     </div>
                     <div class="p-3">
                         <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-gamepad mr-1"></i>Summer Aero Games</h4>
@@ -685,8 +735,8 @@
                 </div>
 
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
-                    <div class="w-full h-32 overflow-hidden">
-                        <img src="assets/Truck.png" alt="Vintage Tech" class="w-full h-full object-cover"/>
+                    <div class="about-img-wrap">
+                        <img src="assets/Truck.png" alt="Vintage Tech" class="about-img"/>
                     </div>
                     <div class="p-3">
                         <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-laptop mr-1"></i>Vintage 80s Tech</h4>
@@ -695,8 +745,8 @@
                 </div>
 
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-brand/30 shadow-lg shadow-brand/5 transition group">
-                    <div class="w-full h-32 overflow-hidden bg-dark-900/50 flex items-center justify-center">
-                        <img src="assets/UCSD.png" alt="Languages" class="w-full h-full object-contain p-2"/>
+                    <div class="about-img-wrap bg-dark-900/50 flex items-center justify-center">
+                        <img src="assets/UCSD.png" alt="Languages" class="about-img-contain p-2"/>
                     </div>
                     <div class="p-3">
                         <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-language mr-1"></i>Languages</h4>
@@ -733,17 +783,11 @@
             <a href="https://linkedin.com/in/originaljose" target="_blank" class="text-gray-500 hover:text-blue-400 transition transform hover:scale-110" aria-label="LinkedIn">
                 <i class="fab fa-linkedin-in"></i>
             </a>
-            <a href="#" target="_blank" class="text-gray-500 hover:text-brand transition transform hover:scale-110" aria-label="X">
-                <i class="fab fa-x-twitter"></i>
-            </a>
-            <a href="Jose%20M.%20Arreaga%20Resume.pdf" target="_blank" class="text-gray-500 hover:text-rose-400 transition transform hover:scale-110" aria-label="Resume PDF">
-                <i class="fas fa-file-pdf"></i>
-            </a>
         </div>
 
         <div class="mt-12 p-6 glass rounded-2xl border border-brand/30 max-w-xs mx-auto">
             <div class="flex justify-center mb-4">
-                <img src="assets/Linkedin-Pro.jpg" alt="Jose M. Arreaga" class="avatar w-20 h-20 rounded-full object-cover border-2 border-brand shadow-lg shadow-brand/30"/>
+                <img src="assets/Linkedin-Pro.jpg" alt="Jose M. Arreaga" class="avatar"/>
             </div>
             <p class="text-sm text-gray-400">
                 <i class="fas fa-wrench text-brand mr-2"></i>
@@ -804,7 +848,6 @@
                 'lessons-title': 'Lessons Learned from Experience',
                 'lessons-subtitle': 'Key takeaways from engineering challenges',
                 'about-title': 'About Me',
-                'about-subtitle': 'Mentorship · Tutoring · Volunteer · Familia · Polaroids · Summer Aerospace Games · Vintage 80s Tech · Languages',
                 'contact-title': 'Let\'s Connect',
                 'contact-desc': 'Actively looking for career growth, collaboration, and conversations about space, flight, innovation projects, and instant photos strategies.',
                 'ready-text': 'READY ON DAY ONE'
@@ -819,7 +862,6 @@
                 'lessons-title': 'Lições Aprendidas com a Experiência',
                 'lessons-subtitle': 'Principais aprendizados dos desafios de engenharia',
                 'about-title': 'Sobre Mim',
-                'about-subtitle': 'Mentoria · Tutoria · Voluntariado · Família · Polaroids · Jogos Aeroespaciais de Verão · Tecnologia Vintage dos Anos 80 · Idiomas',
                 'contact-title': 'Vamos Conectar',
                 'contact-desc': 'Buscando ativamente crescimento profissional, colaboração e conversas sobre espaço, voo, projetos de inovação e estratégias de fotos instantâneas.',
                 'ready-text': 'PRONTO NO PRIMEIRO DIA'
