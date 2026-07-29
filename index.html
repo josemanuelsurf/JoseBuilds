@@ -24,7 +24,27 @@
     </script>
 
     <style>
-        /* Smooth slide-down toggle */
+        /* ---- Background Moon (NASA) ---- */
+        body {
+            background-image: url('https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001491/original/GSFC_20171208_Archive_e001491~orig.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-blend-mode: overlay;
+            background-color: #0a0a0b;
+        }
+        /* If you have local web/mobile copies, replace the URL above with:
+           web: url('/assets/moon-web.jpg');
+           mobile: use a media query for smaller screens */
+        @media (max-width: 768px) {
+            body {
+                background-attachment: scroll;
+                background-image: url('https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001491/original/GSFC_20171208_Archive_e001491~orig.jpg');
+                /* Replace with your mobile path: url('/assets/moon-mobile.jpg'); */
+            }
+        }
+
+        /* ---- Smooth slide-down toggle ---- */
         .toggle-content {
             max-height: 0;
             overflow: hidden;
@@ -37,7 +57,8 @@
             padding-top: 2rem;
             padding-bottom: 2rem;
         }
-        /* Trail / Map line */
+
+        /* ---- Trail / Map Line (Center vertical) ---- */
         .trail-line {
             position: relative;
         }
@@ -62,25 +83,32 @@
             border: 4px solid #0a0a0b;
             border-radius: 50%;
             box-shadow: 0 0 0 4px #4A6CF7, 0 0 20px rgba(74, 108, 247, 0.4);
+            flex-shrink: 0;
         }
-        .trail-dot .fa-solid {
-            font-size: 1.5rem;
-            margin-left: -0.75rem;
-            margin-top: -0.75rem;
-            color: white;
-            background: #4A6CF7;
-            padding: 6px;
-            border-radius: 50%;
-            border: 2px solid #0a0a0b;
+
+        /* ---- Hover Preview Cards ---- */
+        .hover-card {
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.25s ease;
+            transform: translateY(8px) scale(0.95);
+            pointer-events: none;
         }
-        /* Glassmorphism */
+        .timeline-item:hover .hover-card {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0px) scale(1);
+        }
+
+        /* ---- Glassmorphism ---- */
         .glass {
             background: rgba(17, 17, 19, 0.7);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(74, 108, 247, 0.3);
         }
-        /* Cursor blink for rotating text */
+
+        /* ---- Cursor blink for rotating text ---- */
         .cursor-blink {
             animation: blink 1s step-end infinite;
         }
@@ -91,7 +119,7 @@
     </style>
 </head>
 
-<body class="bg-dark-900 text-gray-300 font-sans antialiased">
+<body class="bg-dark-900/80 text-gray-300 font-sans antialiased">
 
     <!-- ============================================================ -->
     <!-- NAVBAR -->
@@ -103,19 +131,18 @@
             </a>
             <div class="hidden md:flex space-x-8 text-sm font-medium">
                 <a href="#career" class="hover:text-brand-light transition">Career</a>
-                <a href="#map" class="hover:text-brand-light transition">Journey</a>
-                <a href="#about" class="hover:text-brand-light transition">About</a>
+                <a href="#map" class="hover:text-brand-light transition">Aerospace Path</a>
+                <a href="#about" class="hover:text-brand-light transition">About Me</a>
                 <a href="#contact" class="hover:text-brand-light transition">Contact</a>
             </div>
-            <!-- Mobile Hamburger -->
             <details class="md:hidden">
                 <summary class="list-none cursor-pointer text-gray-400 hover:text-white">
                     <i class="fas fa-bars text-xl"></i>
                 </summary>
                 <div class="absolute right-4 top-16 w-48 glass rounded-xl border border-brand/30 p-4 flex flex-col space-y-3 text-sm">
                     <a href="#career" class="hover:text-brand-light transition">Career</a>
-                    <a href="#map" class="hover:text-brand-light transition">Journey</a>
-                    <a href="#about" class="hover:text-brand-light transition">About</a>
+                    <a href="#map" class="hover:text-brand-light transition">Aerospace Path</a>
+                    <a href="#about" class="hover:text-brand-light transition">About Me</a>
                     <a href="#contact" class="hover:text-brand-light transition">Contact</a>
                 </div>
             </details>
@@ -123,28 +150,24 @@
     </nav>
 
     <!-- ============================================================ -->
-    <!-- HERO SECTION (Name + Rotating Subtitles) -->
+    <!-- HERO SECTION -->
     <!-- ============================================================ -->
     <section id="hero" class="min-h-screen flex items-center justify-center px-6 pt-24 pb-20 relative overflow-hidden">
-        <!-- Orbs -->
         <div class="absolute top-[-30%] right-[-20%] w-[600px] h-[600px] bg-brand/10 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute bottom-[-30%] left-[-20%] w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-3xl pointer-events-none"></div>
 
         <div class="max-w-5xl mx-auto text-center relative z-10">
-            <!-- Name: Jose (M) Arreaga -->
             <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.1]">
                 <span class="text-white">Jose</span>
                 <span class="text-brand" style="color: #4A6CF7;">M</span>
                 <span class="text-white">Arreaga</span>
             </h1>
             
-            <!-- Main Subtitle (Static) -->
             <p class="text-xl md:text-2xl text-gray-400 mt-4 font-light tracking-wide">
                 <i class="fas fa-user-astronaut text-brand mr-2"></i>
                 Aerospace Engineer
             </p>
             
-            <!-- Rotating Subtitles -->
             <div class="mt-3 h-8 flex items-center justify-center gap-2 text-base md:text-lg font-mono text-brand">
                 <span class="text-gray-500">&lt;</span>
                 <span id="rotating-title" class="min-w-[180px] text-center"></span>
@@ -152,38 +175,34 @@
                 <span class="text-gray-500">/&gt;</span>
             </div>
 
-            <!-- CTA -->
             <div class="mt-10 flex flex-wrap justify-center gap-4">
                 <a href="#career" class="px-8 py-3 rounded-full bg-brand hover:bg-brand-dark text-white font-semibold transition shadow-lg shadow-brand/30 flex items-center gap-2">
-                    <i class="fas fa-timeline"></i> View My Career
+                    <i class="fas fa-timeline"></i> Growth Trajectory
                 </a>
                 <a href="#contact" class="px-8 py-3 rounded-full border border-dark-600 hover:border-brand text-gray-300 hover:text-white font-semibold transition flex items-center gap-2">
-                    <i class="fas fa-paper-plane"></i> Connect
+                    <i class="fas fa-paper-plane"></i> Send a Message
                 </a>
             </div>
         </div>
     </section>
 
     <!-- ============================================================ -->
-    <!-- CAREER BIO TOGGLE (UPDATED: Past, Present, Future) -->
+    <!-- BRIEF TOGGLE (Past, Present, Future) -->
     <!-- ============================================================ -->
-    <section id="career" class="py-16 px-6 border-t border-dark-700/50 bg-dark-800/20">
+    <section id="career" class="py-16 px-6 border-t border-dark-700/50 bg-dark-800/30">
         <div class="max-w-6xl mx-auto">
-            <!-- Toggle Button -->
-            <button onclick="toggleSection('careerBio')" class="w-full text-left group flex items-center justify-between p-4 rounded-xl border border-dark-700 hover:border-brand transition bg-dark-800/50">
+            <button onclick="toggleSection('brief')" class="w-full text-left group flex items-center justify-between p-4 rounded-xl border border-dark-700 hover:border-brand transition bg-dark-800/50">
                 <div>
                     <h2 class="text-2xl md:text-3xl font-bold text-white">
-                        <i class="fas fa-arrows-rotate text-brand mr-3"></i> Career Bio
+                        <i class="fas fa-arrows-rotate text-brand mr-3"></i> Brief
                     </h2>
                     <p class="text-gray-500 text-sm mt-1">Past · Present · Future (click to expand)</p>
                 </div>
-                <i class="fas fa-chevron-down text-brand text-xl transition-transform duration-300" id="careerBioIcon"></i>
+                <i class="fas fa-chevron-down text-brand text-xl transition-transform duration-300" id="briefIcon"></i>
             </button>
 
-            <!-- Toggle Content -->
-            <div id="careerBio" class="toggle-content">
+            <div id="brief" class="toggle-content">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
-                    
                     <!-- PAST -->
                     <div class="bg-dark-800 rounded-xl p-6 border border-dark-700 hover:border-brand/30 transition">
                         <div class="flex items-center gap-2 text-brand text-sm font-mono mb-3">
@@ -223,7 +242,7 @@
                         <div class="flex items-center gap-2 text-brand text-sm font-mono mb-3">
                             <i class="fas fa-rocket"></i> FUTURE
                         </div>
-                        <h3 class="text-xl font-bold text-white">Supporting Autonomous Systems</h3>
+                        <h3 class="text-xl font-bold text-white">Senior Aerospace Engineer & Developer</h3>
                         <ul class="text-gray-400 text-sm mt-2 space-y-1">
                             <li><i class="fas fa-jet-fighter text-brand w-5"></i> Navigating Future Aeronautics</li>
                             <li><i class="fas fa-bolt text-brand w-5"></i> Disrupting Tech</li>
@@ -235,93 +254,138 @@
                             <span class="text-xs px-2 py-1 bg-dark-700 rounded-full border border-dark-600">Strategy</span>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ============================================================ -->
-    <!-- INTERACTIVE MAP / TRAIL (Career Journey) -->
+    <!-- INTERACTIVE MAP: DUAL TIMELINE (Work Left | Edu/Certs Right) -->
     <!-- ============================================================ -->
-    <section id="map" class="py-20 px-6 bg-dark-800/30 border-t border-b border-dark-700/50">
+    <section id="map" class="py-20 px-6 bg-dark-800/40 border-t border-b border-dark-700/50">
         <div class="max-w-5xl mx-auto">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-white">
-                    <i class="fas fa-map-location-dot text-brand mr-3"></i>My Engineering Trail
+                    <i class="fas fa-map-location-dot text-brand mr-3"></i>My Aerospace Lineage
                 </h2>
-                <p class="text-gray-400 mt-2">Follow the path from design to flight to space</p>
+                <p class="text-gray-400 mt-2">Work Experience (Left) · Education & Leadership (Right)</p>
             </div>
 
-            <!-- Timeline Trail (Vertical, centered) -->
-            <div class="relative trail-line flex flex-col items-center space-y-12 px-4 md:px-0">
+            <div class="relative trail-line flex flex-col space-y-12 px-4 md:px-0">
 
-                <!-- Stop 1: Cincinnati -->
-                <div class="relative flex flex-col md:flex-row items-center w-full max-w-2xl gap-4 md:gap-8">
-                    <div class="md:w-1/2 text-center md:text-right order-2 md:order-1">
+                <!-- ROW 1: 2018 GE vs 2019 B.Sc -->
+                <div class="relative flex flex-col md:flex-row items-start w-full max-w-4xl mx-auto gap-4 md:gap-8">
+                    <!-- Left: Work -->
+                    <div class="md:w-1/2 text-right pr-8 order-2 md:order-1 timeline-item group">
                         <span class="text-xs text-brand font-mono">2018</span>
                         <h3 class="text-lg font-bold text-white">GE Aviation</h3>
                         <p class="text-sm text-gray-400">Sensor Design Engineer</p>
                         <p class="text-xs text-gray-500">Cincinnati, OH</p>
-                        <p class="text-xs text-gray-500 mt-1">Instrumentation · 600+ sensors · SQL</p>
-                    </div>
-                    <div class="order-1 md:order-2 flex flex-col items-center">
-                        <div class="trail-dot flex items-center justify-center">
-                            <i class="fas fa-microchip text-white text-lg"></i>
+                        <!-- Hover Card -->
+                        <div class="hover-card absolute left-0 md:right-auto md:left-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
+                            <img src="https://picsum.photos/seed/ge/300/150" alt="GE preview" class="rounded-lg w-full h-16 object-cover mb-2"/>
+                            <p class="text-xs text-gray-300">Instrumentation · 600+ sensors · SQL database optimization.</p>
                         </div>
                     </div>
-                    <div class="md:w-1/2 order-3 hidden md:block"></div>
+                    <!-- Center Dot -->
+                    <div class="order-1 md:order-2 flex flex-col items-center z-10 flex-shrink-0">
+                        <div class="trail-dot"></div>
+                    </div>
+                    <!-- Right: Education -->
+                    <div class="md:w-1/2 text-left pl-8 order-3 timeline-item group">
+                        <span class="text-xs text-brand font-mono">2019</span>
+                        <h3 class="text-lg font-bold text-white">B.Sc. Mechanical Engineering</h3>
+                        <p class="text-sm text-gray-400">Univ. of Cincinnati</p>
+                        <p class="text-xs text-gray-500">GPA: 3.10</p>
+                        <div class="hover-card absolute right-0 md:right-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
+                            <img src="https://picsum.photos/seed/uc/300/150" alt="UC preview" class="rounded-lg w-full h-16 object-cover mb-2"/>
+                            <p class="text-xs text-gray-300">Hands-on labs, thermodynamics, and fluid mechanics foundation.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Stop 2: China Lake -->
-                <div class="relative flex flex-col md:flex-row items-center w-full max-w-2xl gap-4 md:gap-8">
-                    <div class="md:w-1/2 order-2 md:order-2 text-center md:text-left">
+                <!-- ROW 2: 2019 Boeing Flight Test vs 2021 M.Sc -->
+                <div class="relative flex flex-col md:flex-row items-start w-full max-w-4xl mx-auto gap-4 md:gap-8">
+                    <div class="md:w-1/2 text-right pr-8 order-2 md:order-1 timeline-item group">
                         <span class="text-xs text-brand font-mono">2019</span>
                         <h3 class="text-lg font-bold text-white">Boeing Flight Test</h3>
                         <p class="text-sm text-gray-400">F/A-18 Test Engineer</p>
                         <p class="text-xs text-gray-500">China Lake, CA</p>
-                        <p class="text-xs text-gray-500 mt-1">Flight safety · Aircrew coordination · DB</p>
-                    </div>
-                    <div class="order-1 md:order-1 flex flex-col items-center">
-                        <div class="trail-dot flex items-center justify-center">
-                            <i class="fas fa-jet-fighter text-white text-lg"></i>
+                        <div class="hover-card absolute left-0 md:right-auto md:left-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
+                            <img src="https://picsum.photos/seed/flighttest/300/150" alt="Flight Test preview" class="rounded-lg w-full h-16 object-cover mb-2"/>
+                            <p class="text-xs text-gray-300">Flight safety · Aircrew coordination · Database management.</p>
                         </div>
                     </div>
-                    <div class="md:w-1/2 order-3 hidden md:block"></div>
+                    <div class="order-1 md:order-2 flex flex-col items-center z-10 flex-shrink-0">
+                        <div class="trail-dot"></div>
+                    </div>
+                    <div class="md:w-1/2 text-left pl-8 order-3 timeline-item group">
+                        <span class="text-xs text-brand font-mono">2021</span>
+                        <h3 class="text-lg font-bold text-white">M.Sc. Aerospace Engineering</h3>
+                        <p class="text-sm text-gray-400">Washington Univ. St. Louis</p>
+                        <p class="text-xs text-gray-500">GPA: 3.90</p>
+                        <div class="hover-card absolute right-0 md:right-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
+                            <img src="https://picsum.photos/seed/wustl/300/150" alt="WUSTL preview" class="rounded-lg w-full h-16 object-cover mb-2"/>
+                            <p class="text-xs text-gray-300">Spacecraft dynamics, control systems, and advanced propulsion.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Stop 3: St. Louis -->
-                <div class="relative flex flex-col md:flex-row items-center w-full max-w-2xl gap-4 md:gap-8">
-                    <div class="md:w-1/2 text-center md:text-right order-2 md:order-1">
+                <!-- ROW 3: 2019-2022 Boeing Mission Systems vs Private Pilot -->
+                <div class="relative flex flex-col md:flex-row items-start w-full max-w-4xl mx-auto gap-4 md:gap-8">
+                    <div class="md:w-1/2 text-right pr-8 order-2 md:order-1 timeline-item group">
                         <span class="text-xs text-brand font-mono">2019 – 2022</span>
                         <h3 class="text-lg font-bold text-white">Boeing Mission Systems</h3>
                         <p class="text-sm text-gray-400">Hardware Design Engineer</p>
                         <p class="text-xs text-gray-500">St. Louis, MO</p>
-                        <p class="text-xs text-gray-500 mt-1">EA-18G · RF · MBSE (Cameo) · Jira</p>
-                    </div>
-                    <div class="order-1 md:order-2 flex flex-col items-center">
-                        <div class="trail-dot flex items-center justify-center">
-                            <i class="fas fa-satellite-dish text-white text-lg"></i>
+                        <div class="hover-card absolute left-0 md:right-auto md:left-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
+                            <img src="https://picsum.photos/seed/missionsys/300/150" alt="Mission Systems preview" class="rounded-lg w-full h-16 object-cover mb-2"/>
+                            <p class="text-xs text-gray-300">EA-18G · RF integration · MBSE (Cameo) · Jira workflows.</p>
                         </div>
                     </div>
-                    <div class="md:w-1/2 order-3 hidden md:block"></div>
+                    <div class="order-1 md:order-2 flex flex-col items-center z-10 flex-shrink-0">
+                        <div class="trail-dot"></div>
+                    </div>
+                    <div class="md:w-1/2 text-left pl-8 order-3 timeline-item group">
+                        <span class="text-xs text-brand font-mono">Present</span>
+                        <h3 class="text-lg font-bold text-white">Private Pilot & Aviator</h3>
+                        <p class="text-sm text-gray-400">Ground School · 500+ Hrs</p>
+                        <p class="text-xs text-gray-500">Flight Theory Enthusiast</p>
+                        <div class="hover-card absolute right-0 md:right-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
+                            <img src="https://picsum.photos/seed/pilot/300/150" alt="Pilot preview" class="rounded-lg w-full h-16 object-cover mb-2"/>
+                            <p class="text-xs text-gray-300">Private Pilot Ground School completed. Aeronautical decision-making.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Stop 4: El Segundo (Current) -->
-                <div class="relative flex flex-col md:flex-row items-center w-full max-w-2xl gap-4 md:gap-8">
-                    <div class="md:w-1/2 order-2 md:order-2 text-center md:text-left">
+                <!-- ROW 4: 2022-2026 Boeing Space & Launch vs Leadership / Portuguese -->
+                <div class="relative flex flex-col md:flex-row items-start w-full max-w-4xl mx-auto gap-4 md:gap-8">
+                    <div class="md:w-1/2 text-right pr-8 order-2 md:order-1 timeline-item group">
                         <span class="text-xs text-brand font-mono">2022 – 2026</span>
                         <h3 class="text-lg font-bold text-white">Boeing Space & Launch</h3>
                         <p class="text-sm text-gray-400">System Test Developer III</p>
                         <p class="text-xs text-gray-500">El Segundo, CA</p>
-                        <p class="text-xs text-gray-500 mt-1">Satellite I&T · RF · SIL/HIL · Leadership</p>
-                    </div>
-                    <div class="order-1 md:order-1 flex flex-col items-center">
-                        <div class="trail-dot flex items-center justify-center border-brand-light" style="border-color:#6B8AFC; box-shadow: 0 0 0 4px #6B8AFC, 0 0 30px rgba(74,108,247,0.6);">
-                            <i class="fas fa-rocket text-white text-lg"></i>
+                        <div class="hover-card absolute left-0 md:right-auto md:left-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
+                            <img src="https://picsum.photos/seed/space/300/150" alt="Space preview" class="rounded-lg w-full h-16 object-cover mb-2"/>
+                            <p class="text-xs text-gray-300">Satellite I&T · RF · SIL/HIL · Technical Leadership.</p>
                         </div>
                     </div>
-                    <div class="md:w-1/2 order-3 hidden md:block"></div>
+                    <div class="order-1 md:order-2 flex flex-col items-center z-10 flex-shrink-0">
+                        <div class="trail-dot border-brand-light" style="border-color:#6B8AFC; box-shadow: 0 0 0 4px #6B8AFC, 0 0 30px rgba(74,108,247,0.6);"></div>
+                    </div>
+                    <div class="md:w-1/2 text-left pl-8 order-3 timeline-item group">
+                        <span class="text-xs text-brand font-mono">2024 – Present</span>
+                        <h3 class="text-lg font-bold text-white">Leadership & Global Skills</h3>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li>• Technical Lead (Safety & Quality)</li>
+                            <li>• Technical Coordinator (Test Council)</li>
+                            <li>• 1st Year Portuguese (UC San Diego)</li>
+                        </ul>
+                        <div class="hover-card absolute right-0 md:right-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
+                            <img src="https://picsum.photos/seed/leadership/300/150" alt="Leadership preview" class="rounded-lg w-full h-16 object-cover mb-2"/>
+                            <p class="text-xs text-gray-300">RF Safety Initiative, CDRs/TRRs, and cross-functional mentoring.</p>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -329,62 +393,57 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- ABOUT ME TOGGLE (Slide 2 - Unchanged) -->
+    <!-- ABOUT ME TOGGLE (Simplified: Mentorship, Tutoring, Familia, Volunteer, Polaroids, Leadership) -->
     <!-- ============================================================ -->
-    <section id="about" class="py-16 px-6 border-t border-dark-700/50 bg-dark-800/20">
+    <section id="about" class="py-16 px-6 border-t border-dark-700/50 bg-dark-800/30">
         <div class="max-w-6xl mx-auto">
-            <!-- Toggle Button -->
             <button onclick="toggleSection('aboutBio')" class="w-full text-left group flex items-center justify-between p-4 rounded-xl border border-dark-700 hover:border-brand transition bg-dark-800/50">
                 <div>
                     <h2 class="text-2xl md:text-3xl font-bold text-white">
                         <i class="fas fa-user-astronaut text-brand mr-3"></i> About Me
                     </h2>
-                    <p class="text-gray-500 text-sm mt-1">Mentorship · Tutoring · Familia · Volunteer · Polaroids</p>
+                    <p class="text-gray-500 text-sm mt-1">Mentorship · Tutoring · Familia · Volunteer · Polaroids · Leadership</p>
                 </div>
                 <i class="fas fa-chevron-down text-brand text-xl transition-transform duration-300" id="aboutBioIcon"></i>
             </button>
 
-            <!-- Toggle Content -->
             <div id="aboutBio" class="toggle-content">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-                    <!-- Left column -->
-                    <div class="space-y-4">
-                        <div class="bg-dark-800 rounded-xl p-5 border border-dark-700">
-                            <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-chalkboard-user mr-2"></i>Mentorship</h4>
-                            <p class="text-gray-300 text-sm mt-1">Engineering Mentor at Boeing – guiding entry-level engineers in satellite quality and test integration.</p>
-                        </div>
-                        <div class="bg-dark-800 rounded-xl p-5 border border-dark-700">
-                            <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-hand-holding-heart mr-2"></i>Volunteer & Familia</h4>
-                            <p class="text-gray-300 text-sm mt-1">Active volunteer supporting STEM outreach and community education. Deeply rooted in familia values.</p>
-                        </div>
-                        <div class="bg-dark-800 rounded-xl p-5 border border-dark-700">
-                            <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-camera mr-2"></i>Polaroids</h4>
-                            <p class="text-gray-300 text-sm mt-1">Capturing moments – from flight line to integration lab, documenting the engineering journey.</p>
-                        </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+                    
+                    <div class="bg-dark-800 rounded-xl p-5 border border-dark-700 hover:border-brand/30 transition">
+                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-chalkboard-user mr-2"></i>Mentorship</h4>
+                        <p class="text-gray-300 text-sm mt-1">Guiding entry-level engineers in satellite quality and test integration at Boeing.</p>
                     </div>
-                    <!-- Right column -->
-                    <div class="space-y-4">
-                        <div class="bg-dark-800 rounded-xl p-5 border border-dark-700">
-                            <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-university mr-2"></i>Education</h4>
-                            <ul class="text-gray-300 text-sm space-y-1 mt-1">
-                                <li><span class="text-white">M.Sc. Aerospace Eng.</span> – Washington Univ. St. Louis (GPA: 3.90)</li>
-                                <li><span class="text-white">B.Sc. Mechanical Eng.</span> – Univ. of Cincinnati (GPA: 3.10)</li>
-                                <li><span class="text-white">1st Year Portuguese</span> – UC San Diego</li>
-                            </ul>
-                        </div>
-                        <div class="bg-dark-800 rounded-xl p-5 border border-dark-700">
-                            <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-trophy mr-2"></i>Leadership</h4>
-                            <ul class="text-gray-300 text-sm space-y-1 mt-1">
-                                <li>Technical Lead – Safety & Quality System Test Org</li>
-                                <li>Technical Coordinator – Test Engineering Council</li>
-                                <li>RF Safety Initiative Lead</li>
-                            </ul>
-                        </div>
-                        <div class="bg-dark-800 rounded-xl p-5 border border-brand/30">
-                            <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-plane mr-2"></i>Aviator</h4>
-                            <p class="text-gray-300 text-sm mt-1">Private Pilot Ground School · 500+ hours · Flight theory enthusiast.</p>
-                        </div>
+
+                    <div class="bg-dark-800 rounded-xl p-5 border border-dark-700 hover:border-brand/30 transition">
+                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-chalkboard mr-2"></i>Tutoring</h4>
+                        <p class="text-gray-300 text-sm mt-1">Supporting STEM students in math, physics, and engineering fundamentals.</p>
                     </div>
+
+                    <div class="bg-dark-800 rounded-xl p-5 border border-dark-700 hover:border-brand/30 transition">
+                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-people-group mr-2"></i>Familia</h4>
+                        <p class="text-gray-300 text-sm mt-1">Deeply rooted in family values—community, resilience, and support.</p>
+                    </div>
+
+                    <div class="bg-dark-800 rounded-xl p-5 border border-dark-700 hover:border-brand/30 transition">
+                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-hand-holding-heart mr-2"></i>Volunteer</h4>
+                        <p class="text-gray-300 text-sm mt-1">Active in STEM outreach and community education initiatives.</p>
+                    </div>
+
+                    <div class="bg-dark-800 rounded-xl p-5 border border-dark-700 hover:border-brand/30 transition">
+                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-camera mr-2"></i>Polaroids</h4>
+                        <p class="text-gray-300 text-sm mt-1">Capturing moments from flight lines to integration labs—documenting the journey.</p>
+                    </div>
+
+                    <div class="bg-dark-800 rounded-xl p-5 border border-brand/30 shadow-lg shadow-brand/5 transition">
+                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-trophy mr-2"></i>Leadership</h4>
+                        <ul class="text-gray-300 text-sm mt-1 space-y-1">
+                            <li>• Technical Lead – Safety & Quality Org</li>
+                            <li>• Coordinator – Test Engineering Council</li>
+                            <li>• RF Safety Initiative Lead</li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -442,10 +501,9 @@
     </footer>
 
     <!-- ============================================================ -->
-    <!-- JAVASCRIPT: Toggle + Rotating Titles + Year -->
+    <!-- JAVASCRIPT -->
     <!-- ============================================================ -->
     <script>
-        // ===== Toggle function =====
         function toggleSection(id) {
             const content = document.getElementById(id);
             const icon = document.getElementById(id + 'Icon');
@@ -457,7 +515,6 @@
             }
         }
 
-        // ===== Rotating Subtitles =====
         const titles = [
             "Software Developer",
             "System I&T",
@@ -474,11 +531,9 @@
             index = (index + 1) % titles.length;
         }
 
-        // Start the rotation
         rotateTitle();
         setInterval(rotateTitle, 2500);
 
-        // ===== Auto-update footer year =====
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 
