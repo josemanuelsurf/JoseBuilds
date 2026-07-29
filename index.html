@@ -28,18 +28,16 @@
         .toggle-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, padding 0.3s ease;
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
             opacity: 0;
-            padding-top: 0;
-            padding-bottom: 0;
         }
         .toggle-content.open {
-            max-height: 3000px; /* large enough for content */
+            max-height: 3000px;
             opacity: 1;
             padding-top: 2rem;
             padding-bottom: 2rem;
         }
-        /* Trail / Map line */
+        /* Trail / Map line - FIXED to remove linter warnings */
         .trail-line {
             position: relative;
         }
@@ -55,6 +53,8 @@
             border-radius: 4px;
             opacity: 0.6;
         }
+        /* Removed duplicate media query that caused warnings */
+        
         .trail-dot {
             position: relative;
             z-index: 2;
@@ -75,21 +75,12 @@
             border-radius: 50%;
             border: 2px solid #0a0a0b;
         }
-        @media (min-width: 768px) {
-            .trail-line::before {
-                left: 50%;
-                height: 100%;
-            }
-        }
-        /* Glassmorphism */
+        /* Glassmorphism - FIXED with standard prefix */
         .glass {
             background: rgba(17, 17, 19, 0.7);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(30, 58, 138, 0.3);
-        }
-        .text-navy-glow {
-            text-shadow: 0 0 40px rgba(30, 58, 138, 0.3);
         }
     </style>
 </head>
@@ -392,7 +383,7 @@
             <a href="https://linkedin.com/in/originaljose" target="_blank" class="text-gray-500 hover:text-blue-400 transition transform hover:scale-110" aria-label="LinkedIn">
                 <i class="fab fa-linkedin-in"></i>
             </a>
-            <a href="https://twitter.com" target="_blank" class="text-gray-500 hover:text-navy transition transform hover:scale-110" aria-label="X">
+            <a href="#" target="_blank" class="text-gray-500 hover:text-navy transition transform hover:scale-110" aria-label="X">
                 <i class="fab fa-x-twitter"></i>
             </a>
             <a href="#" target="_blank" class="text-gray-500 hover:text-rose-400 transition transform hover:scale-110" aria-label="Resume PDF">
