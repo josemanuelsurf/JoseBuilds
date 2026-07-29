@@ -24,7 +24,6 @@
     </script>
 
     <style>
-        /* ---- Background Moon (NASA) ---- */
         body {
             background-image: url('assets/Moon-Desktop.png');
             background-size: cover;
@@ -40,7 +39,6 @@
             }
         }
 
-        /* ---- Trail / Map Line (Center vertical) ---- */
         .trail-line {
             position: relative;
         }
@@ -68,7 +66,6 @@
             flex-shrink: 0;
         }
 
-        /* ---- Hover Preview Cards ---- */
         .hover-card {
             visibility: hidden;
             opacity: 0;
@@ -81,8 +78,50 @@
             opacity: 1;
             transform: translateY(0px) scale(1);
         }
+        @media (max-width: 768px) {
+            .hover-card {
+                visibility: visible;
+                opacity: 0;
+                transform: translateY(8px) scale(0.95);
+                pointer-events: none;
+                position: relative !important;
+                left: auto !important;
+                right: auto !important;
+                top: auto !important;
+                margin-top: 8px;
+                width: 100% !important;
+            }
+            .timeline-item.active .hover-card {
+                opacity: 1;
+                transform: translateY(0px) scale(1);
+                pointer-events: auto;
+            }
+            .timeline-item {
+                cursor: pointer;
+            }
+        }
 
-        /* ---- Glassmorphism ---- */
+        .img-fit-cover {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+        .img-fit-contain {
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+        }
+        .img-fit-card {
+            object-fit: cover;
+            width: 100%;
+            height: 160px;
+        }
+        .img-fit-hover {
+            object-fit: cover;
+            width: 100%;
+            height: 120px;
+        }
+
         .glass {
             background: rgba(17, 17, 19, 0.7);
             backdrop-filter: blur(12px);
@@ -90,7 +129,6 @@
             border: 1px solid rgba(74, 108, 247, 0.3);
         }
 
-        /* ---- Cursor blink for rotating text ---- */
         .cursor-blink {
             animation: blink 1s step-end infinite;
         }
@@ -99,25 +137,6 @@
             50% { opacity: 0; }
         }
 
-        /* ---- Terminal animation (jrdan.dev style) ---- */
-        .terminal-text {
-            font-family: 'Courier New', monospace;
-            border-right: 2px solid #4A6CF7;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: typewriter 3s steps(40) 1s 1 normal both,
-                       blink-cursor 0.75s step-end infinite;
-        }
-        @keyframes typewriter {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        @keyframes blink-cursor {
-            from, to { border-color: transparent; }
-            50% { border-color: #4A6CF7; }
-        }
-
-        /* ---- Theme toggle ---- */
         .theme-toggle {
             cursor: pointer;
             transition: transform 0.3s ease;
@@ -126,7 +145,6 @@
             transform: rotate(30deg);
         }
 
-        /* ---- Language switcher ---- */
         .lang-btn {
             cursor: pointer;
             transition: all 0.2s ease;
@@ -138,13 +156,69 @@
             color: #4A6CF7;
             font-weight: bold;
         }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #4A6CF7;
+            box-shadow: 0 0 30px rgba(74, 108, 247, 0.3);
+        }
+
+        .timeline-row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        @media (min-width: 768px) {
+            .timeline-row {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 2rem;
+            }
+            .timeline-row .left-side {
+                text-align: right;
+                padding-right: 2rem;
+                width: 50%;
+                order: 1;
+            }
+            .timeline-row .center-dot {
+                order: 2;
+                flex-shrink: 0;
+            }
+            .timeline-row .right-side {
+                text-align: left;
+                padding-left: 2rem;
+                width: 50%;
+                order: 3;
+            }
+        }
+        @media (max-width: 767px) {
+            .timeline-row .left-side {
+                text-align: center;
+                width: 100%;
+                order: 1;
+            }
+            .timeline-row .center-dot {
+                order: 2;
+                margin: 0.5rem 0;
+            }
+            .timeline-row .right-side {
+                text-align: center;
+                width: 100%;
+                order: 3;
+                margin-top: 0.5rem;
+            }
+        }
     </style>
 </head>
 
 <body class="bg-dark-900/80 text-gray-300 font-sans antialiased">
 
     <!-- ============================================================ -->
-    <!-- NAVBAR (My Path, Projects, Resume, Contact) -->
+    <!-- NAVBAR -->
     <!-- ============================================================ -->
     <nav class="fixed top-0 left-0 w-full z-50 glass border-b border-brand/30">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -157,12 +231,10 @@
                 <a href="Jose%20M.%20Arreaga%20Resume.pdf" target="_blank" class="hover:text-brand-light transition">Resume</a>
                 <a href="#contact" class="hover:text-brand-light transition">Contact</a>
                 
-                <!-- Theme Toggle -->
                 <button onclick="toggleTheme()" class="theme-toggle text-gray-400 hover:text-brand transition text-lg" aria-label="Toggle theme">
                     <i class="fas fa-moon" id="theme-icon"></i>
                 </button>
                 
-                <!-- Language Switcher -->
                 <div class="flex items-center space-x-2 text-xs">
                     <span class="lang-btn active" onclick="setLanguage('en')" id="lang-en">EN</span>
                     <span class="text-gray-600">|</span>
@@ -170,7 +242,6 @@
                 </div>
             </div>
             
-            <!-- Mobile Hamburger -->
             <details class="md:hidden">
                 <summary class="list-none cursor-pointer text-gray-400 hover:text-white">
                     <i class="fas fa-bars text-xl"></i>
@@ -213,18 +284,7 @@
                 <i class="fas fa-user-astronaut text-brand mr-2"></i>
                 <span id="title-text">Aerospace Engineer</span>
             </p>
-            
-            <!-- Terminal-style animation -->
-            <div class="mt-4 flex items-center justify-center">
-                <div class="bg-dark-800/70 border border-brand/20 rounded-lg px-4 py-2 inline-block">
-                    <span class="text-green-400 text-sm font-mono">$</span>
-                    <span class="text-gray-300 text-sm font-mono ml-2" id="terminal-output">
-                        <span class="terminal-text">system_check --status=ready</span>
-                    </span>
-                </div>
-            </div>
 
-            <!-- Rotating Subtitles -->
             <div class="mt-3 h-8 flex items-center justify-center gap-2 text-base md:text-lg font-mono text-brand">
                 <span class="text-gray-500">&lt;</span>
                 <span id="rotating-title" class="min-w-[180px] text-center"></span>
@@ -253,164 +313,186 @@
                     <i class="fas fa-map-location-dot text-brand mr-3"></i><span id="timeline-title">My Aerospace Path</span>
                 </h2>
                 <p class="text-gray-400 mt-2">
-                    <i class="fas fa-briefcase text-brand mr-2"></i><span id="timeline-left-label">Work Experience</span> (Left) · 
-                    <i class="fas fa-graduation-cap text-brand mr-2"></i><span id="timeline-right-label">Education & Leadership</span> (Right)
+                    <i class="fas fa-briefcase text-brand mr-2"></i><span id="timeline-left-label">Work Experience</span> · 
+                    <i class="fas fa-graduation-cap text-brand mr-2"></i><span id="timeline-right-label">Education & Leadership</span>
                 </p>
             </div>
 
-            <div class="relative trail-line flex flex-col space-y-12 px-4 md:px-0">
+            <div class="relative trail-line flex flex-col space-y-8 md:space-y-12 px-2 md:px-0">
 
                 <!-- ROW 1: 2015 GE Research vs 2015-2019 B.Sc -->
-                <div class="relative flex flex-col md:flex-row items-start w-full max-w-4xl mx-auto gap-4 md:gap-8">
-                    <div class="md:w-1/2 text-right pr-8 order-2 md:order-1 timeline-item group">
+                <div class="relative timeline-row">
+                    <div class="left-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2015</span>
                         <h3 class="text-lg font-bold text-white">GE Aviation</h3>
                         <p class="text-sm text-gray-400">Undergrad Research: Turbine Blade Plenum Designs</p>
                         <p class="text-xs text-gray-500">Blade heat transfer · 3D modeling · Flow chamber testing</p>
-                        <div class="hover-card absolute left-0 md:right-auto md:left-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="assets/HW-Plenum.png" alt="HW Plenum" class="rounded-lg w-full h-20 object-cover mb-2"/>
-                            <p class="text-xs text-gray-300">Researched turbine blade cooling efficiency and plenum designs.</p>
+                        <div class="hover-card">
+                            <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
+                                <img src="assets/HW-Plenum.png" alt="HW Plenum" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <p class="text-xs text-gray-300">Researched turbine blade cooling efficiency and plenum designs.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="order-1 md:order-2 flex flex-col items-center z-10 flex-shrink-0">
+                    <div class="center-dot">
                         <div class="trail-dot"></div>
                     </div>
-                    <div class="md:w-1/2 text-left pl-8 order-3 timeline-item group">
+                    <div class="right-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2015 – 2019</span>
                         <h3 class="text-lg font-bold text-white">B.Sc. Mechanical Engineering</h3>
                         <p class="text-sm text-gray-400">University of Cincinnati</p>
                         <p class="text-xs text-gray-500">GPA: 3.10</p>
-                        <div class="hover-card absolute right-0 md:right-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="assets/UC.png" alt="UC" class="rounded-lg w-full h-20 object-contain mb-2 bg-dark-900/50"/>
-                            <p class="text-xs text-gray-300">Hands-on labs, thermodynamics, fluid mechanics, and materials.</p>
+                        <div class="hover-card">
+                            <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
+                                <img src="assets/UC.png" alt="UC" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <p class="text-xs text-gray-300">Hands-on labs, thermodynamics, fluid mechanics, and materials.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- ROW 2: 2016 GE Turbine Design R&D Intern -->
-                <div class="relative flex flex-col md:flex-row items-start w-full max-w-4xl mx-auto gap-4 md:gap-8">
-                    <div class="md:w-1/2 text-right pr-8 order-2 md:order-1 timeline-item group">
+                <div class="relative timeline-row">
+                    <div class="left-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2016</span>
                         <h3 class="text-lg font-bold text-white">GE Aviation</h3>
                         <p class="text-sm text-gray-400">Turbine Design R&D Intern</p>
                         <p class="text-xs text-gray-500">Advanced aerodynamics · CFD analysis · Blade design</p>
-                        <div class="hover-card absolute left-0 md:right-auto md:left-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="assets/Cooling-Turbine-Blade.png" alt="Cooling Turbine Blade" class="rounded-lg w-full h-20 object-cover mb-2"/>
-                            <p class="text-xs text-gray-300">Optimized turbine blade profiles for improved cooling efficiency.</p>
+                        <div class="hover-card">
+                            <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
+                                <img src="assets/Cooling-Turbine-Blade.png" alt="Cooling Turbine Blade" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <p class="text-xs text-gray-300">Optimized turbine blade profiles for improved cooling efficiency.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="order-1 md:order-2 flex flex-col items-center z-10 flex-shrink-0">
+                    <div class="center-dot">
                         <div class="trail-dot"></div>
                     </div>
-                    <div class="md:w-1/2 text-left pl-8 order-3 timeline-item group">
+                    <div class="right-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2016 – 2017</span>
                         <h3 class="text-lg font-bold text-white">(Continued B.Sc.)</h3>
                         <p class="text-sm text-gray-400">University of Cincinnati</p>
                         <p class="text-xs text-gray-500">Co-op rotations</p>
-                        <div class="hover-card absolute right-0 md:right-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="assets/UC.png" alt="UC" class="rounded-lg w-full h-20 object-contain mb-2 bg-dark-900/50"/>
-                            <p class="text-xs text-gray-300">Balanced academic coursework with industry co-op experience.</p>
+                        <div class="hover-card">
+                            <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
+                                <img src="assets/UC.png" alt="UC" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <p class="text-xs text-gray-300">Balanced academic coursework with industry co-op experience.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- ROW 3: 2017 GE Dust Deposition R&D Intern -->
-                <div class="relative flex flex-col md:flex-row items-start w-full max-w-4xl mx-auto gap-4 md:gap-8">
-                    <div class="md:w-1/2 text-right pr-8 order-2 md:order-1 timeline-item group">
+                <div class="relative timeline-row">
+                    <div class="left-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2017</span>
                         <h3 class="text-lg font-bold text-white">GE Aviation</h3>
                         <p class="text-sm text-gray-400">Dust Deposition R&D Intern</p>
                         <p class="text-xs text-gray-500">Particle impact · Erosion prevention · Material testing</p>
-                        <div class="hover-card absolute left-0 md:right-auto md:left-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="assets/Dus-Turbine-Blade.png" alt="Dust Turbine Blade" class="rounded-lg w-full h-20 object-cover mb-2"/>
-                            <p class="text-xs text-gray-300">Tested coatings to reduce particle impact damage on turbine blades.</p>
+                        <div class="hover-card">
+                            <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
+                                <img src="assets/Dus-Turbine-Blade.png" alt="Dust Turbine Blade" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <p class="text-xs text-gray-300">Tested coatings to reduce particle impact damage on turbine blades.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="order-1 md:order-2 flex flex-col items-center z-10 flex-shrink-0">
+                    <div class="center-dot">
                         <div class="trail-dot"></div>
                     </div>
-                    <div class="md:w-1/2 text-left pl-8 order-3 timeline-item group">
+                    <div class="right-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2017 – 2018</span>
                         <h3 class="text-lg font-bold text-white">(Continued B.Sc.)</h3>
                         <p class="text-sm text-gray-400">University of Cincinnati</p>
                         <p class="text-xs text-gray-500">Co-op rotations</p>
-                        <div class="hover-card absolute right-0 md:right-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="assets/UC.png" alt="UC" class="rounded-lg w-full h-20 object-contain mb-2 bg-dark-900/50"/>
-                            <p class="text-xs text-gray-300">Continued academic excellence while gaining industrial experience.</p>
+                        <div class="hover-card">
+                            <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
+                                <img src="assets/UC.png" alt="UC" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <p class="text-xs text-gray-300">Continued academic excellence while gaining industrial experience.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- ROW 4: 2018-2019 GE Sensor Design vs 2019 Graduation -->
-                <div class="relative flex flex-col md:flex-row items-start w-full max-w-4xl mx-auto gap-4 md:gap-8">
-                    <div class="md:w-1/2 text-right pr-8 order-2 md:order-1 timeline-item group">
+                <div class="relative timeline-row">
+                    <div class="left-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2018 – 2019</span>
                         <h3 class="text-lg font-bold text-white">GE Aviation</h3>
                         <p class="text-sm text-gray-400">Sensor Design & Infra-Engineer</p>
                         <p class="text-xs text-gray-500">600+ sensors · SQL DB · 3D modeling · Test systems</p>
-                        <div class="hover-card absolute left-0 md:right-auto md:left-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="assets/GE9x.png" alt="GE9x" class="rounded-lg w-full h-20 object-cover mb-2"/>
-                            <p class="text-xs text-gray-300">Designed instrumentation layouts and optimized sensor routing.</p>
+                        <div class="hover-card">
+                            <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
+                                <img src="assets/GE9x.png" alt="GE9x" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <p class="text-xs text-gray-300">Designed instrumentation layouts and optimized sensor routing.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="order-1 md:order-2 flex flex-col items-center z-10 flex-shrink-0">
+                    <div class="center-dot">
                         <div class="trail-dot"></div>
                     </div>
-                    <div class="md:w-1/2 text-left pl-8 order-3 timeline-item group">
+                    <div class="right-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2019</span>
                         <h3 class="text-lg font-bold text-white">B.Sc. Mechanical Engineering</h3>
                         <p class="text-sm text-gray-400">University of Cincinnati — Graduation</p>
                         <p class="text-xs text-gray-500">GPA: 3.10</p>
-                        <div class="hover-card absolute right-0 md:right-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="assets/Graduation-Bachelors.jpg" alt="Graduation" class="rounded-lg w-full h-20 object-cover mb-2"/>
-                            <p class="text-xs text-gray-300">Completed degree with co-op experience across 3 GE rotations.</p>
+                        <div class="hover-card">
+                            <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
+                                <img src="assets/Graduation-Bachelors.jpg" alt="Graduation" class="w-full h-24 object-cover rounded-lg mb-2"/>
+                                <p class="text-xs text-gray-300">Completed degree with co-op experience across 3 GE rotations.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- ROW 5: 2019 Boeing Flight Test vs 2019-2021 M.Sc -->
-                <div class="relative flex flex-col md:flex-row items-start w-full max-w-4xl mx-auto gap-4 md:gap-8">
-                    <div class="md:w-1/2 text-right pr-8 order-2 md:order-1 timeline-item group">
+                <div class="relative timeline-row">
+                    <div class="left-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2019</span>
                         <h3 class="text-lg font-bold text-white">Boeing Flight Test</h3>
                         <p class="text-sm text-gray-400">F/A-18 Test Engineer</p>
                         <p class="text-xs text-gray-500">China Lake, CA</p>
-                        <div class="hover-card absolute left-0 md:right-auto md:left-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="assets/Super-Hornet.png" alt="Super Hornet" class="rounded-lg w-full h-20 object-cover mb-2"/>
-                            <p class="text-xs text-gray-300">Flight safety, aircrew coordination, and database management.</p>
+                        <div class="hover-card">
+                            <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
+                                <img src="assets/Super-Hornet.png" alt="Super Hornet" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <p class="text-xs text-gray-300">Flight safety, aircrew coordination, and database management.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="order-1 md:order-2 flex flex-col items-center z-10 flex-shrink-0">
+                    <div class="center-dot">
                         <div class="trail-dot"></div>
                     </div>
-                    <div class="md:w-1/2 text-left pl-8 order-3 timeline-item group">
+                    <div class="right-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2019 – 2021</span>
                         <h3 class="text-lg font-bold text-white">M.Sc. Aerospace Engineering</h3>
                         <p class="text-sm text-gray-400">Washington Univ. St. Louis</p>
                         <p class="text-xs text-gray-500">GPA: 3.90</p>
-                        <div class="hover-card absolute right-0 md:right-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="assets/WashU.png" alt="WashU" class="rounded-lg w-full h-20 object-contain mb-2 bg-dark-900/50"/>
-                            <p class="text-xs text-gray-300">Spacecraft dynamics, control systems, and advanced propulsion.</p>
+                        <div class="hover-card">
+                            <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
+                                <img src="assets/WashU.png" alt="WashU" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <p class="text-xs text-gray-300">Spacecraft dynamics, control systems, and advanced propulsion.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- ROW 6: 2019-2022 Boeing Mission Systems vs 2020-2022 Volunteer -->
-                <div class="relative flex flex-col md:flex-row items-start w-full max-w-4xl mx-auto gap-4 md:gap-8">
-                    <div class="md:w-1/2 text-right pr-8 order-2 md:order-1 timeline-item group">
+                <div class="relative timeline-row">
+                    <div class="left-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2019 – 2022</span>
                         <h3 class="text-lg font-bold text-white">Boeing Mission Systems</h3>
                         <p class="text-sm text-gray-400">Hardware Design Engineer</p>
                         <p class="text-xs text-gray-500">St. Louis, MO</p>
-                        <div class="hover-card absolute left-0 md:right-auto md:left-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="assets/Growler.png" alt="Growler" class="rounded-lg w-full h-20 object-cover mb-2"/>
-                            <p class="text-xs text-gray-300">EA-18G, RF integration, MBSE (Cameo), Jira workflows.</p>
+                        <div class="hover-card">
+                            <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
+                                <img src="assets/Growler.png" alt="Growler" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <p class="text-xs text-gray-300">EA-18G, RF integration, MBSE (Cameo), Jira workflows.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="order-1 md:order-2 flex flex-col items-center z-10 flex-shrink-0">
+                    <div class="center-dot">
                         <div class="trail-dot"></div>
                     </div>
-                    <div class="md:w-1/2 text-left pl-8 order-3 timeline-item group">
+                    <div class="right-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2020 – 2022</span>
                         <h3 class="text-lg font-bold text-white">Volunteer & Outreach</h3>
                         <ul class="text-sm text-gray-400 space-y-1">
@@ -418,29 +500,33 @@
                             <li>• FIRST Lego League & Robotics Mentor</li>
                             <li>• STEM Outreach & Community Engagement</li>
                         </ul>
-                        <div class="hover-card absolute right-0 md:right-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="assets/LA-Volunteer.jpg" alt="Volunteer" class="rounded-lg w-full h-20 object-cover mb-2"/>
-                            <p class="text-xs text-gray-300">Community engagement, robotics coaching, STEM advocacy.</p>
+                        <div class="hover-card">
+                            <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
+                                <img src="assets/LA-Volunteer.jpg" alt="Volunteer" class="w-full h-24 object-cover rounded-lg mb-2"/>
+                                <p class="text-xs text-gray-300">Community engagement, robotics coaching, STEM advocacy.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- ROW 7: 2022-2026 Boeing Space & Launch vs 2021-2026 Mentorship -->
-                <div class="relative flex flex-col md:flex-row items-start w-full max-w-4xl mx-auto gap-4 md:gap-8">
-                    <div class="md:w-1/2 text-right pr-8 order-2 md:order-1 timeline-item group">
+                <div class="relative timeline-row">
+                    <div class="left-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2022 – 2026</span>
                         <h3 class="text-lg font-bold text-white">Boeing Space & Launch</h3>
                         <p class="text-sm text-gray-400">System Test Developer III</p>
                         <p class="text-xs text-gray-500">El Segundo, CA</p>
-                        <div class="hover-card absolute left-0 md:right-auto md:left-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="assets/Satellite.png" alt="Satellite" class="rounded-lg w-full h-20 object-cover mb-2"/>
-                            <p class="text-xs text-gray-300">Satellite I&T, RF, SIL/HIL, and Technical Leadership.</p>
+                        <div class="hover-card">
+                            <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
+                                <img src="assets/Satellite-Icon.png" alt="Satellite" class="w-full h-24 object-contain rounded-lg mb-2 bg-dark-900/50"/>
+                                <p class="text-xs text-gray-300">Satellite I&T, RF, SIL/HIL, and Technical Leadership.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="order-1 md:order-2 flex flex-col items-center z-10 flex-shrink-0">
+                    <div class="center-dot">
                         <div class="trail-dot border-brand-light" style="border-color:#6B8AFC; box-shadow: 0 0 0 4px #6B8AFC, 0 0 30px rgba(74,108,247,0.6);"></div>
                     </div>
-                    <div class="md:w-1/2 text-left pl-8 order-3 timeline-item group">
+                    <div class="right-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2021 – 2026</span>
                         <h3 class="text-lg font-bold text-white">Mentorship & Leadership</h3>
                         <ul class="text-sm text-gray-400 space-y-1">
@@ -449,9 +535,12 @@
                             <li>• Technical Lead – Safety & Quality Org</li>
                             <li>• Coordinator – Test Engineering Council</li>
                         </ul>
-                        <div class="hover-card absolute right-0 md:right-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="assets/Mentorship.png" alt="Mentorship" class="rounded-lg w-full h-20 object-cover mb-2"/>
-                            <p class="text-xs text-gray-300">Resume coaching, professional networking, career guidance.</p>
+                        <div class="hover-card">
+                            <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
+                                <!-- Stock engineering leadership photo (team collaboration) -->
+                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=300&h=200&fit=crop&crop=center" alt="Engineering Leadership" class="w-full h-24 object-cover rounded-lg mb-2"/>
+                                <p class="text-xs text-gray-300">Resume coaching, professional networking, career guidance.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -475,7 +564,9 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Card 1: Satellite I&T -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/50 transition group">
-                    <img src="assets/Satellite-Test.jpg" alt="Satellite I&T" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300"/>
+                    <div class="w-full h-48 overflow-hidden">
+                        <img src="assets/Satellite-Test.jpg" alt="Satellite I&T" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"/>
+                    </div>
                     <div class="p-5">
                         <h3 class="text-xl font-bold text-white">Satellite I&T</h3>
                         <p class="text-gray-400 text-sm mt-1">System integration & test execution</p>
@@ -488,7 +579,9 @@
 
                 <!-- Card 2: Flight Test Engineering -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/50 transition group">
-                    <img src="assets/FTE.JPG" alt="Flight Test Engineering" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300"/>
+                    <div class="w-full h-48 overflow-hidden">
+                        <img src="assets/FTE.JPG" alt="Flight Test Engineering" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"/>
+                    </div>
                     <div class="p-5">
                         <h3 class="text-xl font-bold text-white">Flight Test Engineering</h3>
                         <p class="text-gray-400 text-sm mt-1">F/A-18 test & evaluation</p>
@@ -501,7 +594,9 @@
 
                 <!-- Card 3: CAD/FEA Mechanical Design -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/50 transition group">
-                    <img src="https://images.unsplash.com/photo-1542296332-2e4473faf563?w=600&h=400&fit=crop" alt="Commercial Airplane" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300"/>
+                    <div class="w-full h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1542296332-2e4473faf563?w=600&h=400&fit=crop" alt="Commercial Airplane" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"/>
+                    </div>
                     <div class="p-5">
                         <h3 class="text-xl font-bold text-white">CAD/FEA Mechanical Design</h3>
                         <p class="text-gray-400 text-sm mt-1">Aircraft structural analysis</p>
@@ -516,7 +611,7 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- ABOUT ME SECTION (8 Cards with Images) -->
+    <!-- ABOUT ME SECTION (8 Cards) -->
     <!-- ============================================================ -->
     <section id="about" class="py-20 px-6 bg-dark-800/20 border-t border-b border-dark-700/50">
         <div class="max-w-6xl mx-auto">
@@ -527,80 +622,88 @@
                 <p class="text-gray-400 mt-2"><span id="about-subtitle">Mentorship · Tutoring · Volunteer · Familia · Polaroids · Summer Aerospace Games · Vintage 80s Tech · Languages</span></p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 
-                <!-- Mentorship -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
-                    <img src="assets/Mentorship.png" alt="Mentorship" class="w-full h-32 object-cover"/>
-                    <div class="p-4">
-                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-chalkboard-user mr-2"></i>Mentorship</h4>
-                        <p class="text-gray-300 text-xs mt-1">Guiding entry-level engineers in satellite quality and test integration.</p>
+                    <div class="w-full h-32 overflow-hidden">
+                        <img src="assets/Mentorship.png" alt="Mentorship" class="w-full h-full object-cover"/>
+                    </div>
+                    <div class="p-3">
+                        <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-chalkboard-user mr-1"></i>Mentorship</h4>
+                        <p class="text-gray-300 text-xs mt-1">Guiding entry-level engineers.</p>
                     </div>
                 </div>
 
-                <!-- Tutoring -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
-                    <img src="assets/Tutoring.png" alt="Tutoring" class="w-full h-32 object-cover"/>
-                    <div class="p-4">
-                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-chalkboard mr-2"></i>Tutoring</h4>
-                        <p class="text-gray-300 text-xs mt-1">Supporting STEM students in math, physics, and engineering.</p>
+                    <div class="w-full h-32 overflow-hidden">
+                        <img src="assets/Tutoring.png" alt="Tutoring" class="w-full h-full object-cover"/>
+                    </div>
+                    <div class="p-3">
+                        <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-chalkboard mr-1"></i>Tutoring</h4>
+                        <p class="text-gray-300 text-xs mt-1">Supporting STEM students.</p>
                     </div>
                 </div>
 
-                <!-- Volunteer -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
-                    <img src="assets/LA-Volunteer.jpg" alt="Volunteer" class="w-full h-32 object-cover"/>
-                    <div class="p-4">
-                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-hand-holding-heart mr-2"></i>Volunteer</h4>
-                        <p class="text-gray-300 text-xs mt-1">Active in STEM outreach, FIRST Robotics, and community education.</p>
+                    <div class="w-full h-32 overflow-hidden">
+                        <img src="assets/LA-Volunteer.jpg" alt="Volunteer" class="w-full h-full object-cover"/>
+                    </div>
+                    <div class="p-3">
+                        <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-hand-holding-heart mr-1"></i>Volunteer</h4>
+                        <p class="text-gray-300 text-xs mt-1">STEM outreach & robotics.</p>
                     </div>
                 </div>
 
-                <!-- Familia -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
-                    <img src="assets/Familia.png" alt="Familia" class="w-full h-32 object-cover"/>
-                    <div class="p-4">
-                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-people-group mr-2"></i>Familia</h4>
-                        <p class="text-gray-300 text-xs mt-1">Deeply rooted in family values—community, resilience, and support.</p>
+                    <div class="w-full h-32 overflow-hidden">
+                        <img src="assets/Familia.png" alt="Familia" class="w-full h-full object-cover"/>
+                    </div>
+                    <div class="p-3">
+                        <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-people-group mr-1"></i>Familia</h4>
+                        <p class="text-gray-300 text-xs mt-1">Rooted in family values.</p>
                     </div>
                 </div>
 
-                <!-- Polaroids -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
-                    <img src="assets/Polaroid.png" alt="Polaroids" class="w-full h-32 object-cover"/>
-                    <div class="p-4">
-                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-camera mr-2"></i>Polaroids</h4>
-                        <p class="text-gray-300 text-xs mt-1">Capturing moments from flight lines to integration labs.</p>
+                    <div class="w-full h-32 overflow-hidden">
+                        <img src="assets/Polaroid.png" alt="Polaroids" class="w-full h-full object-cover"/>
+                    </div>
+                    <div class="p-3">
+                        <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-camera mr-1"></i>Polaroids</h4>
+                        <p class="text-gray-300 text-xs mt-1">Capturing engineering moments.</p>
                     </div>
                 </div>
 
-                <!-- Summer Aerospace Games -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
-                    <img src="assets/AeroSpace-Games.jpg" alt="Aerospace Games" class="w-full h-32 object-cover"/>
-                    <div class="p-4">
-                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-gamepad mr-2"></i>Summer Aerospace Games</h4>
-                        <p class="text-gray-300 text-xs mt-1">Strategic thinking, creative expression, and engineering challenges.</p>
+                    <div class="w-full h-32 overflow-hidden">
+                        <img src="assets/AeroSpace-Games.jpg" alt="Aerospace Games" class="w-full h-full object-cover"/>
+                    </div>
+                    <div class="p-3">
+                        <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-gamepad mr-1"></i>Summer Aero Games</h4>
+                        <p class="text-gray-300 text-xs mt-1">Strategic engineering challenges.</p>
                     </div>
                 </div>
 
-                <!-- Vintage 80s Tech -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
-                    <img src="assets/Truck.png" alt="Vintage Tech" class="w-full h-32 object-cover"/>
-                    <div class="p-4">
-                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-laptop mr-2"></i>Vintage 80s Tech</h4>
-                        <p class="text-gray-300 text-xs mt-1">Retro computing enthusiast—appreciating the roots of modern engineering.</p>
+                    <div class="w-full h-32 overflow-hidden">
+                        <img src="assets/Truck.png" alt="Vintage Tech" class="w-full h-full object-cover"/>
+                    </div>
+                    <div class="p-3">
+                        <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-laptop mr-1"></i>Vintage 80s Tech</h4>
+                        <p class="text-gray-300 text-xs mt-1">Retro computing enthusiast.</p>
                     </div>
                 </div>
 
-                <!-- Languages -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-brand/30 shadow-lg shadow-brand/5 transition group">
-                    <img src="assets/UCSD.png" alt="Languages" class="w-full h-32 object-contain bg-dark-900/50"/>
-                    <div class="p-4">
-                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-language mr-2"></i>Languages</h4>
-                        <ul class="text-gray-300 text-xs mt-1 space-y-1">
+                    <div class="w-full h-32 overflow-hidden bg-dark-900/50 flex items-center justify-center">
+                        <img src="assets/UCSD.png" alt="Languages" class="w-full h-full object-contain p-2"/>
+                    </div>
+                    <div class="p-3">
+                        <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-language mr-1"></i>Languages</h4>
+                        <ul class="text-gray-300 text-xs mt-1 space-y-0.5">
                             <li>• English (Native)</li>
                             <li>• Spanish (Native)</li>
-                            <li>• Portuguese (1st Year – UC San Diego)</li>
+                            <li>• Portuguese (1st Year)</li>
                         </ul>
                     </div>
                 </div>
@@ -639,6 +742,9 @@
         </div>
 
         <div class="mt-12 p-6 glass rounded-2xl border border-brand/30 max-w-xs mx-auto">
+            <div class="flex justify-center mb-4">
+                <img src="assets/Linkedin-Pro.jpg" alt="Jose M. Arreaga" class="avatar w-20 h-20 rounded-full object-cover border-2 border-brand shadow-lg shadow-brand/30"/>
+            </div>
             <p class="text-sm text-gray-400">
                 <i class="fas fa-wrench text-brand mr-2"></i>
                 <span class="font-mono text-white" id="ready-text">READY ON DAY ONE</span>
@@ -664,7 +770,6 @@
     <!-- JAVASCRIPT -->
     <!-- ============================================================ -->
     <script>
-        // ===== Theme Toggle =====
         let darkMode = true;
 
         function toggleTheme() {
@@ -688,7 +793,6 @@
             }
         }
 
-        // ===== Language Switcher =====
         const translations = {
             en: {
                 'title-text': 'Aerospace Engineer',
@@ -723,11 +827,9 @@
         };
 
         function setLanguage(lang) {
-            // Update active state
             document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
             document.getElementById(`lang-${lang}`).classList.add('active');
             
-            // Apply translations
             const t = translations[lang];
             if (!t) return;
             
@@ -737,7 +839,6 @@
             });
         }
 
-        // ===== Rotating Subtitles =====
         const titles = [
             "Software Developer",
             "System I&T",
@@ -757,33 +858,8 @@
         rotateTitle();
         setInterval(rotateTitle, 2500);
 
-        // ===== Terminal Animation =====
-        const terminalMessages = [
-            "system_check --status=ready",
-            "flight_computer --online",
-            "telemetry --established",
-            "engineering_mode --active"
-        ];
-        let termIndex = 0;
-        const terminalEl = document.getElementById('terminal-output');
-
-        function cycleTerminal() {
-            // Remove the terminal-text class, change content, then re-add
-            terminalEl.classList.remove('terminal-text');
-            // Force reflow
-            void terminalEl.offsetWidth;
-            terminalEl.textContent = terminalMessages[termIndex];
-            terminalEl.classList.add('terminal-text');
-            termIndex = (termIndex + 1) % terminalMessages.length;
-        }
-
-        // Cycle terminal every 4 seconds
-        setInterval(cycleTerminal, 4000);
-
-        // ===== Auto-update footer year =====
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // ===== Smooth scroll for nav links =====
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
@@ -792,6 +868,14 @@
                 const target = document.querySelector(href);
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    this.classList.toggle('active');
                 }
             });
         });
