@@ -24,6 +24,7 @@
     </script>
 
     <style>
+        /* ---- Background Moon ---- */
         body {
             background-image: url('assets/Moon-Desktop.png');
             background-size: cover;
@@ -39,6 +40,7 @@
             }
         }
 
+        /* ---- Trail / Map Line ---- */
         .trail-line {
             position: relative;
         }
@@ -66,6 +68,7 @@
             flex-shrink: 0;
         }
 
+        /* ---- Hover Cards ---- */
         .hover-card {
             visibility: hidden;
             opacity: 0;
@@ -101,17 +104,68 @@
             }
         }
 
-        .img-fit-cover {
-            object-fit: cover;
+        /* ---- IMAGE FIXES ---- */
+        /* For hover cards - logos and diagrams (full image, no crop) */
+        .hover-img-contain {
             width: 100%;
-            height: 100%;
-        }
-        .img-fit-contain {
+            height: 96px;
             object-fit: contain;
+            background: rgba(17, 17, 19, 0.5);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+        /* For hover cards - photos that should fill the space */
+        .hover-img-cover {
+            width: 100%;
+            height: 96px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+        /* For the Graduation photo specifically - focus on the person */
+        .graduation-img {
+            width: 100%;
+            height: 96px;
+            object-fit: cover;
+            object-position: center 30%;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+        /* For About Me cards - logos and icons (full image) */
+        .about-img-contain {
+            width: 100%;
+            height: 128px;
+            object-fit: contain;
+            background: rgba(17, 17, 19, 0.5);
+        }
+        /* For About Me cards - photos (fill, but try to show key parts) */
+        .about-img-cover {
+            width: 100%;
+            height: 128px;
+            object-fit: cover;
+        }
+        /* For UCSD logo in About Me */
+        .about-img-logo {
+            width: 100%;
+            height: 128px;
+            object-fit: contain;
+            background: rgba(17, 17, 19, 0.5);
+            padding: 0.5rem;
+        }
+        /* For project cards (Lessons Learned) */
+        .project-img-wrap {
+            width: 100%;
+            height: 192px;
+            overflow: hidden;
+        }
+        .project-img {
             width: 100%;
             height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
 
+        /* ---- Glassmorphism ---- */
         .glass {
             background: rgba(17, 17, 19, 0.7);
             backdrop-filter: blur(12px);
@@ -119,6 +173,7 @@
             border: 1px solid rgba(74, 108, 247, 0.3);
         }
 
+        /* ---- Cursor blink ---- */
         .cursor-blink {
             animation: blink 1s step-end infinite;
         }
@@ -127,6 +182,7 @@
             50% { opacity: 0; }
         }
 
+        /* ---- Theme toggle ---- */
         .theme-toggle {
             cursor: pointer;
             transition: transform 0.3s ease;
@@ -135,6 +191,7 @@
             transform: rotate(30deg);
         }
 
+        /* ---- Language switcher ---- */
         .lang-btn {
             cursor: pointer;
             transition: all 0.2s ease;
@@ -147,6 +204,7 @@
             font-weight: bold;
         }
 
+        /* ---- Avatar ---- */
         .avatar {
             width: 80px;
             height: 80px;
@@ -156,6 +214,21 @@
             box-shadow: 0 0 30px rgba(74, 108, 247, 0.3);
         }
 
+        /* ---- Resume Button (Blue Highlight) ---- */
+        .resume-btn {
+            background: rgba(74, 108, 247, 0.15);
+            border: 1px solid rgba(74, 108, 247, 0.4);
+            border-radius: 9999px;
+            padding: 0.25rem 1rem;
+            transition: all 0.2s ease;
+        }
+        .resume-btn:hover {
+            background: rgba(74, 108, 247, 0.3);
+            border-color: #4A6CF7;
+            box-shadow: 0 0 20px rgba(74, 108, 247, 0.2);
+        }
+
+        /* ---- Timeline Row Layout ---- */
         .timeline-row {
             display: flex;
             flex-direction: column;
@@ -202,63 +275,6 @@
                 margin-top: 0.5rem;
             }
         }
-
-        /* Blue highlight button for Resume */
-        .resume-btn {
-            background: rgba(74, 108, 247, 0.15);
-            border: 1px solid rgba(74, 108, 247, 0.4);
-            border-radius: 9999px;
-            padding: 0.25rem 1rem;
-            transition: all 0.2s ease;
-        }
-        .resume-btn:hover {
-            background: rgba(74, 108, 247, 0.3);
-            border-color: #4A6CF7;
-            box-shadow: 0 0 20px rgba(74, 108, 247, 0.2);
-        }
-        /* Image fit fix for Lessons cards */
-        .project-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        .project-img-wrap {
-            width: 100%;
-            height: 192px;
-            overflow: hidden;
-        }
-        .about-img-wrap {
-            width: 100%;
-            height: 128px;
-            overflow: hidden;
-        }
-        .about-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .about-img-contain {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        /* Timeline hover image fit */
-        .hover-img {
-            width: 100%;
-            height: 96px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 0.5rem;
-        }
-        .hover-img-contain {
-            width: 100%;
-            height: 96px;
-            object-fit: contain;
-            border-radius: 8px;
-            margin-bottom: 0.5rem;
-            background: rgba(17, 17, 19, 0.5);
-        }
     </style>
 </head>
 
@@ -276,22 +292,22 @@
                 <a href="#map" class="hover:text-brand-light transition">My Path</a>
                 <a href="#lessons" class="hover:text-brand-light transition">Projects</a>
                 <!-- Resume as Blue Highlight Button -->
-                <a href="assets/Jose%20M%20Arreaga%20Resume.pdf" target="_blank" class="resume-btn text-brand hover:text-white transition flex items-center gap-2">
+                <a href="/Jose-M-Arreaga-Resume.pdf" target="_blank" class="resume-btn text-brand hover:text-white transition flex items-center gap-2">
                     <i class="fas fa-file-pdf text-brand"></i> Resume
                 </a>
                 <a href="#contact" class="hover:text-brand-light transition">Contact</a>
-                
+
                 <button onclick="toggleTheme()" class="theme-toggle text-gray-400 hover:text-brand transition text-lg" aria-label="Toggle theme">
                     <i class="fas fa-moon" id="theme-icon"></i>
                 </button>
-                
+
                 <div class="flex items-center space-x-2 text-xs">
                     <span class="lang-btn active" onclick="setLanguage('en')" id="lang-en">EN</span>
                     <span class="text-gray-600">|</span>
                     <span class="lang-btn" onclick="setLanguage('pt')" id="lang-pt">PT</span>
                 </div>
             </div>
-            
+
             <details class="md:hidden">
                 <summary class="list-none cursor-pointer text-gray-400 hover:text-white">
                     <i class="fas fa-bars text-xl"></i>
@@ -299,7 +315,7 @@
                 <div class="absolute right-4 top-16 w-48 glass rounded-xl border border-brand/30 p-4 flex flex-col space-y-3 text-sm">
                     <a href="#map" class="hover:text-brand-light transition">My Path</a>
                     <a href="#lessons" class="hover:text-brand-light transition">Projects</a>
-                    <a href="assets/Jose%20M.%20Arreaga%20Resume.pdf" target="_blank" class="resume-btn text-brand hover:text-white transition flex items-center gap-2 justify-center">
+                    <a href="/Jose-M-Arreaga-Resume.pdf" target="_blank" class="resume-btn text-brand hover:text-white transition flex items-center gap-2 justify-center">
                         <i class="fas fa-file-pdf text-brand"></i> Resume
                     </a>
                     <a href="#contact" class="hover:text-brand-light transition">Contact</a>
@@ -331,7 +347,7 @@
                 <span class="text-brand" style="color: #4A6CF7;">M</span>
                 <span class="text-white">Arreaga</span>
             </h1>
-            
+
             <p class="text-xl md:text-2xl text-gray-400 mt-4 font-light tracking-wide">
                 <i class="fas fa-user-astronaut text-brand mr-2"></i>
                 <span id="title-text">Aerospace Engineer</span>
@@ -365,7 +381,7 @@
                     <i class="fas fa-map-location-dot text-brand mr-3"></i><span id="timeline-title">My Aerospace Path</span>
                 </h2>
                 <p class="text-gray-400 mt-2">
-                    <i class="fas fa-briefcase text-brand mr-2"></i><span id="timeline-left-label">Work Experience</span> · 
+                    <i class="fas fa-briefcase text-brand mr-2"></i><span id="timeline-left-label">Work Experience</span> ·
                     <i class="fas fa-graduation-cap text-brand mr-2"></i><span id="timeline-right-label">Education & Leadership</span>
                 </p>
             </div>
@@ -489,7 +505,7 @@
                         <p class="text-xs text-gray-500">GPA: 3.10</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
-                                <img src="assets/Graduation-Bachelors.jpg" alt="Graduation" class="hover-img"/>
+                                <img src="assets/Graduation-Bachelors.jpg" alt="Graduation" class="graduation-img"/>
                                 <p class="text-xs text-gray-300">Completed degree with co-op experience across 3 GE rotations.</p>
                             </div>
                         </div>
@@ -554,7 +570,7 @@
                         </ul>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
-                                <img src="assets/LA-Volunteer.jpg" alt="Volunteer" class="hover-img"/>
+                                <img src="assets/LA-Volunteer.jpg" alt="Volunteer" class="hover-img-cover"/>
                                 <p class="text-xs text-gray-300">Community engagement, robotics coaching, STEM advocacy.</p>
                             </div>
                         </div>
@@ -589,7 +605,7 @@
                         </ul>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
-                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=300&h=200&fit=crop&crop=center" alt="Engineering Leadership" class="hover-img"/>
+                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=300&h=200&fit=crop&crop=center" alt="Engineering Leadership" class="hover-img-cover"/>
                                 <p class="text-xs text-gray-300">Resume coaching, professional networking, career guidance.</p>
                             </div>
                         </div>
@@ -662,7 +678,7 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- ABOUT ME SECTION (8 Cards) -->
+    <!-- ABOUT ME SECTION (8 Cards - Subtitle Removed) -->
     <!-- ============================================================ -->
     <section id="about" class="py-20 px-6 bg-dark-800/20 border-t border-b border-dark-700/50">
         <div class="max-w-6xl mx-auto">
@@ -673,10 +689,11 @@
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                
+
+                <!-- Mentorship -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
-                    <div class="about-img-wrap">
-                        <img src="assets/Mentorship.png" alt="Mentorship" class="about-img"/>
+                    <div class="w-full h-32 overflow-hidden">
+                        <img src="assets/Mentorship.png" alt="Mentorship" class="about-img-contain"/>
                     </div>
                     <div class="p-3">
                         <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-chalkboard-user mr-1"></i>Mentorship</h4>
@@ -684,9 +701,10 @@
                     </div>
                 </div>
 
+                <!-- Tutoring -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
-                    <div class="about-img-wrap">
-                        <img src="assets/Tutoring.png" alt="Tutoring" class="about-img"/>
+                    <div class="w-full h-32 overflow-hidden">
+                        <img src="assets/Tutoring.png" alt="Tutoring" class="about-img-contain"/>
                     </div>
                     <div class="p-3">
                         <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-chalkboard mr-1"></i>Tutoring</h4>
@@ -694,9 +712,10 @@
                     </div>
                 </div>
 
+                <!-- Volunteer -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
-                    <div class="about-img-wrap">
-                        <img src="assets/LA-Volunteer.jpg" alt="Volunteer" class="about-img"/>
+                    <div class="w-full h-32 overflow-hidden">
+                        <img src="assets/LA-Volunteer.jpg" alt="Volunteer" class="about-img-cover"/>
                     </div>
                     <div class="p-3">
                         <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-hand-holding-heart mr-1"></i>Volunteer</h4>
@@ -704,9 +723,10 @@
                     </div>
                 </div>
 
+                <!-- Familia -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
-                    <div class="about-img-wrap">
-                        <img src="assets/Familia.png" alt="Familia" class="about-img"/>
+                    <div class="w-full h-32 overflow-hidden">
+                        <img src="assets/Familia.png" alt="Familia" class="about-img-contain"/>
                     </div>
                     <div class="p-3">
                         <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-people-group mr-1"></i>Familia</h4>
@@ -714,9 +734,10 @@
                     </div>
                 </div>
 
+                <!-- Polaroids -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
-                    <div class="about-img-wrap">
-                        <img src="assets/Polaroid.png" alt="Polaroids" class="about-img"/>
+                    <div class="w-full h-32 overflow-hidden">
+                        <img src="assets/Polaroid.png" alt="Polaroids" class="about-img-contain"/>
                     </div>
                     <div class="p-3">
                         <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-camera mr-1"></i>Polaroids</h4>
@@ -724,9 +745,10 @@
                     </div>
                 </div>
 
+                <!-- Summer Aerospace Games -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
-                    <div class="about-img-wrap">
-                        <img src="assets/AeroSpace-Games.jpg" alt="Aerospace Games" class="about-img"/>
+                    <div class="w-full h-32 overflow-hidden">
+                        <img src="assets/AeroSpace-Games.jpg" alt="Aerospace Games" class="about-img-cover"/>
                     </div>
                     <div class="p-3">
                         <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-gamepad mr-1"></i>Summer Aero Games</h4>
@@ -734,9 +756,10 @@
                     </div>
                 </div>
 
+                <!-- Vintage 80s Tech -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
-                    <div class="about-img-wrap">
-                        <img src="assets/Truck.png" alt="Vintage Tech" class="about-img"/>
+                    <div class="w-full h-32 overflow-hidden">
+                        <img src="assets/Truck.png" alt="Vintage Tech" class="about-img-contain"/>
                     </div>
                     <div class="p-3">
                         <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-laptop mr-1"></i>Vintage 80s Tech</h4>
@@ -744,9 +767,10 @@
                     </div>
                 </div>
 
+                <!-- Languages -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-brand/30 shadow-lg shadow-brand/5 transition group">
-                    <div class="about-img-wrap bg-dark-900/50 flex items-center justify-center">
-                        <img src="assets/UCSD.png" alt="Languages" class="about-img-contain p-2"/>
+                    <div class="w-full h-32 overflow-hidden bg-dark-900/50 flex items-center justify-center">
+                        <img src="assets/UCSD.png" alt="Languages" class="about-img-logo"/>
                     </div>
                     <div class="p-3">
                         <h4 class="text-brand font-bold text-xs uppercase tracking-wider"><i class="fas fa-language mr-1"></i>Languages</h4>
@@ -821,7 +845,7 @@
             const body = document.body;
             const icon = document.getElementById('theme-icon');
             const iconMobile = document.getElementById('theme-icon-mobile');
-            
+
             if (darkMode) {
                 body.classList.remove('light');
                 body.classList.add('dark');
@@ -871,10 +895,10 @@
         function setLanguage(lang) {
             document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
             document.getElementById(`lang-${lang}`).classList.add('active');
-            
+
             const t = translations[lang];
             if (!t) return;
-            
+
             Object.keys(t).forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.textContent = t[id];
