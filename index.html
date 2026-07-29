@@ -24,7 +24,6 @@
     </script>
 
     <style>
-        /* ---- Background Moon ---- */
         body {
             background-image: url('assets/Moon-Desktop.png');
             background-size: cover;
@@ -40,7 +39,64 @@
             }
         }
 
-        /* ---- Trail / Map Line ---- */
+        .glass {
+            background: rgba(17, 17, 19, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(74, 108, 247, 0.3);
+        }
+
+        .resume-btn {
+            background: rgba(74, 108, 247, 0.15);
+            border: 1px solid rgba(74, 108, 247, 0.4);
+            border-radius: 9999px;
+            padding: 0.25rem 1rem;
+            transition: all 0.2s ease;
+        }
+        .resume-btn:hover {
+            background: rgba(74, 108, 247, 0.3);
+            border-color: #4A6CF7;
+            box-shadow: 0 0 20px rgba(74, 108, 247, 0.2);
+        }
+
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+        }
+
+        .lang-btn {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover {
+            color: #4A6CF7;
+        }
+        .lang-btn.active {
+            color: #4A6CF7;
+            font-weight: bold;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #4A6CF7;
+            box-shadow: 0 0 30px rgba(74, 108, 247, 0.3);
+        }
+
+        /* ---- TRAIL / MAP LINE ---- */
         .trail-line {
             position: relative;
         }
@@ -68,7 +124,6 @@
             flex-shrink: 0;
         }
 
-        /* ---- Hover Cards ---- */
         .hover-card {
             visibility: hidden;
             opacity: 0;
@@ -105,7 +160,6 @@
         }
 
         /* ---- IMAGE FIXES ---- */
-        /* For hover cards - logos and diagrams (full image, no crop) */
         .hover-img-contain {
             width: 100%;
             height: 96px;
@@ -114,7 +168,6 @@
             border-radius: 8px;
             margin-bottom: 0.5rem;
         }
-        /* For hover cards - photos that should fill the space */
         .hover-img-cover {
             width: 100%;
             height: 96px;
@@ -122,7 +175,6 @@
             border-radius: 8px;
             margin-bottom: 0.5rem;
         }
-        /* For the Graduation photo specifically - focus on the person */
         .graduation-img {
             width: 100%;
             height: 96px;
@@ -131,20 +183,17 @@
             border-radius: 8px;
             margin-bottom: 0.5rem;
         }
-        /* For About Me cards - logos and icons (full image) */
         .about-img-contain {
             width: 100%;
             height: 128px;
             object-fit: contain;
             background: rgba(17, 17, 19, 0.5);
         }
-        /* For About Me cards - photos (fill, but try to show key parts) */
         .about-img-cover {
             width: 100%;
             height: 128px;
             object-fit: cover;
         }
-        /* For UCSD logo in About Me */
         .about-img-logo {
             width: 100%;
             height: 128px;
@@ -152,7 +201,6 @@
             background: rgba(17, 17, 19, 0.5);
             padding: 0.5rem;
         }
-        /* For project cards (Lessons Learned) */
         .project-img-wrap {
             width: 100%;
             height: 192px;
@@ -165,70 +213,7 @@
             transition: transform 0.3s ease;
         }
 
-        /* ---- Glassmorphism ---- */
-        .glass {
-            background: rgba(17, 17, 19, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(74, 108, 247, 0.3);
-        }
-
-        /* ---- Cursor blink ---- */
-        .cursor-blink {
-            animation: blink 1s step-end infinite;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        /* ---- Theme toggle ---- */
-        .theme-toggle {
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        .theme-toggle:hover {
-            transform: rotate(30deg);
-        }
-
-        /* ---- Language switcher ---- */
-        .lang-btn {
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .lang-btn:hover {
-            color: #4A6CF7;
-        }
-        .lang-btn.active {
-            color: #4A6CF7;
-            font-weight: bold;
-        }
-
-        /* ---- Avatar ---- */
-        .avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #4A6CF7;
-            box-shadow: 0 0 30px rgba(74, 108, 247, 0.3);
-        }
-
-        /* ---- Resume Button (Blue Highlight) ---- */
-        .resume-btn {
-            background: rgba(74, 108, 247, 0.15);
-            border: 1px solid rgba(74, 108, 247, 0.4);
-            border-radius: 9999px;
-            padding: 0.25rem 1rem;
-            transition: all 0.2s ease;
-        }
-        .resume-btn:hover {
-            background: rgba(74, 108, 247, 0.3);
-            border-color: #4A6CF7;
-            box-shadow: 0 0 20px rgba(74, 108, 247, 0.2);
-        }
-
-        /* ---- Timeline Row Layout ---- */
+        /* ---- TIMELINE ROW ---- */
         .timeline-row {
             display: flex;
             flex-direction: column;
@@ -285,15 +270,15 @@
     <!-- ============================================================ -->
     <nav class="fixed top-0 left-0 w-full z-50 glass border-b border-brand/30">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#hero" class="text-xl font-bold tracking-tight text-white hover:text-brand-light transition">
+            <a href="index.html" class="text-xl font-bold tracking-tight text-white hover:text-brand-light transition">
                 <i class="fas fa-rocket text-brand mr-2"></i>JoseBuilds
             </a>
             <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
-            <a href="#map" class="hover:text-brand-light transition">My Path</a>
-            <a href="toolkit.html" class="hover:text-brand-light transition">Toolkit</a>
-            <a href="/Jose-M-Arreaga-Resume.pdf" target="_blank" class="resume-btn text-brand hover:text-white transition flex items-center gap-2">
-                <i class="fas fa-file-pdf text-brand"></i> Resume
-            </a>
+                <a href="#map" class="hover:text-brand-light transition">My Path</a>
+                <a href="toolkit.html" class="hover:text-brand-light transition">Toolkit</a>
+                <a href="/Jose-M-Arreaga-Resume.pdf" target="_blank" class="resume-btn text-brand hover:text-white transition flex items-center gap-2">
+                    <i class="fas fa-file-pdf text-brand"></i> Resume
+                </a>
                 <a href="#contact" class="hover:text-brand-light transition">Contact</a>
 
                 <button onclick="toggleTheme()" class="theme-toggle text-gray-400 hover:text-brand transition text-lg" aria-label="Toggle theme">
@@ -315,7 +300,7 @@
                     <a href="#map" class="hover:text-brand-light transition">My Path</a>
                     <a href="toolkit.html" class="hover:text-brand-light transition">Toolkit</a>
                     <a href="/Jose-M-Arreaga-Resume.pdf" target="_blank" class="resume-btn text-brand hover:text-white transition flex items-center gap-2 justify-center">
-                         <i class="fas fa-file-pdf text-brand"></i> Resume
+                        <i class="fas fa-file-pdf text-brand"></i> Resume
                     </a>
                     <a href="#contact" class="hover:text-brand-light transition">Contact</a>
                     <div class="flex items-center justify-between pt-2 border-t border-dark-700">
@@ -371,222 +356,197 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- INTERACTIVE MAP: EXTENDED 7-ROW TIMELINE -->
+    <!-- QUICK CONTACT (simplified version of full timeline) -->
     <!-- ============================================================ -->
     <section id="map" class="py-20 px-6 bg-dark-800/40 border-t border-b border-dark-700/50">
         <div class="max-w-5xl mx-auto">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-white">
-                    <i class="fas fa-map-location-dot text-brand mr-3"></i><span id="timeline-title">My Aerospace Path</span>
+                    <i class="fas fa-map-location-dot text-brand mr-3"></i>My Aerospace Path
                 </h2>
                 <p class="text-gray-400 mt-2">
-                    <i class="fas fa-briefcase text-brand mr-2"></i><span id="timeline-left-label">Work Experience</span> ·
-                    <i class="fas fa-graduation-cap text-brand mr-2"></i><span id="timeline-right-label">Education & Leadership</span>
+                    <i class="fas fa-briefcase text-brand mr-2"></i>Work Experience ·
+                    <i class="fas fa-graduation-cap text-brand mr-2"></i>Education & Leadership
                 </p>
             </div>
 
+            <!-- Simplified Timeline -->
             <div class="relative trail-line flex flex-col space-y-8 md:space-y-12 px-2 md:px-0">
-
-                <!-- ROW 1: 2015 GE Research vs 2015-2019 B.Sc -->
+                <!-- Row 1 -->
                 <div class="relative timeline-row">
                     <div class="left-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2015</span>
                         <h3 class="text-lg font-bold text-white">GE Aviation</h3>
-                        <p class="text-sm text-gray-400">Undergrad Research: Turbine Blade Plenum Designs</p>
-                        <p class="text-xs text-gray-500">Blade heat transfer · 3D modeling · Flow chamber testing</p>
+                        <p class="text-sm text-gray-400">Undergrad Research</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
                                 <img src="assets/HW-Plenum.png" alt="HW Plenum" class="hover-img-contain"/>
-                                <p class="text-xs text-gray-300">Researched turbine blade cooling efficiency and plenum designs.</p>
+                                <p class="text-xs text-gray-300">Turbine blade cooling efficiency research.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="center-dot">
-                        <div class="trail-dot"></div>
-                    </div>
+                    <div class="center-dot"><div class="trail-dot"></div></div>
                     <div class="right-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2015 – 2019</span>
                         <h3 class="text-lg font-bold text-white">B.Sc. Mechanical Engineering</h3>
-                        <p class="text-sm text-gray-400">University of Cincinnati</p>
-                        <p class="text-xs text-gray-500">GPA: 3.10</p>
+                        <p class="text-sm text-gray-400">Univ. of Cincinnati</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
                                 <img src="assets/UC.png" alt="UC" class="hover-img-contain"/>
-                                <p class="text-xs text-gray-300">Hands-on labs, thermodynamics, fluid mechanics, and materials.</p>
+                                <p class="text-xs text-gray-300">GPA: 3.10</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- ROW 2: 2016 GE Turbine Design R&D Intern -->
+                <!-- Row 2 -->
                 <div class="relative timeline-row">
                     <div class="left-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2016</span>
                         <h3 class="text-lg font-bold text-white">GE Aviation</h3>
                         <p class="text-sm text-gray-400">Turbine Design R&D Intern</p>
-                        <p class="text-xs text-gray-500">Advanced aerodynamics · CFD analysis · Blade design</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
-                                <img src="assets/Cooling-Turbine-Blade.png" alt="Cooling Turbine Blade" class="hover-img-contain"/>
-                                <p class="text-xs text-gray-300">Optimized turbine blade profiles for improved cooling efficiency.</p>
+                                <img src="assets/Cooling-Turbine-Blade.png" alt="Cooling Turbine" class="hover-img-contain"/>
+                                <p class="text-xs text-gray-300">Advanced aerodynamics, CFD analysis.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="center-dot">
-                        <div class="trail-dot"></div>
-                    </div>
+                    <div class="center-dot"><div class="trail-dot"></div></div>
                     <div class="right-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2016 – 2017</span>
                         <h3 class="text-lg font-bold text-white">(Continued B.Sc.)</h3>
-                        <p class="text-sm text-gray-400">University of Cincinnati</p>
-                        <p class="text-xs text-gray-500">Co-op rotations</p>
+                        <p class="text-sm text-gray-400">Co-op rotations</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
                                 <img src="assets/UC.png" alt="UC" class="hover-img-contain"/>
-                                <p class="text-xs text-gray-300">Balanced academic coursework with industry co-op experience.</p>
+                                <p class="text-xs text-gray-300">Balanced academics with industry experience.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- ROW 3: 2017 GE Dust Deposition R&D Intern -->
+                <!-- Row 3 -->
                 <div class="relative timeline-row">
                     <div class="left-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2017</span>
                         <h3 class="text-lg font-bold text-white">GE Aviation</h3>
                         <p class="text-sm text-gray-400">Dust Deposition R&D Intern</p>
-                        <p class="text-xs text-gray-500">Particle impact · Erosion prevention · Material testing</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
-                                <img src="assets/Dus-Turbine-Blade.png" alt="Dust Turbine Blade" class="hover-img-contain"/>
-                                <p class="text-xs text-gray-300">Tested coatings to reduce particle impact damage on turbine blades.</p>
+                                <img src="assets/Dus-Turbine-Blade.png" alt="Dust Turbine" class="hover-img-contain"/>
+                                <p class="text-xs text-gray-300">Particle impact, erosion prevention.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="center-dot">
-                        <div class="trail-dot"></div>
-                    </div>
+                    <div class="center-dot"><div class="trail-dot"></div></div>
                     <div class="right-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2017 – 2018</span>
                         <h3 class="text-lg font-bold text-white">(Continued B.Sc.)</h3>
-                        <p class="text-sm text-gray-400">University of Cincinnati</p>
-                        <p class="text-xs text-gray-500">Co-op rotations</p>
+                        <p class="text-sm text-gray-400">Co-op rotations</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
                                 <img src="assets/UC.png" alt="UC" class="hover-img-contain"/>
-                                <p class="text-xs text-gray-300">Continued academic excellence while gaining industrial experience.</p>
+                                <p class="text-xs text-gray-300">Continued academic and industrial growth.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- ROW 4: 2018-2019 GE Sensor Design vs 2019 Graduation -->
+                <!-- Row 4 -->
                 <div class="relative timeline-row">
                     <div class="left-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2018 – 2019</span>
                         <h3 class="text-lg font-bold text-white">GE Aviation</h3>
                         <p class="text-sm text-gray-400">Sensor Design & Infra-Engineer</p>
-                        <p class="text-xs text-gray-500">600+ sensors · SQL DB · 3D modeling · Test systems</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
                                 <img src="assets/GE9x.png" alt="GE9x" class="hover-img-contain"/>
-                                <p class="text-xs text-gray-300">Designed instrumentation layouts and optimized sensor routing.</p>
+                                <p class="text-xs text-gray-300">600+ sensors, SQL, 3D modeling.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="center-dot">
-                        <div class="trail-dot"></div>
-                    </div>
+                    <div class="center-dot"><div class="trail-dot"></div></div>
                     <div class="right-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2019</span>
                         <h3 class="text-lg font-bold text-white">B.Sc. Mechanical Engineering</h3>
                         <p class="text-sm text-gray-400">University of Cincinnati — Graduation</p>
-                        <p class="text-xs text-gray-500">GPA: 3.10</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
                                 <img src="assets/Graduation-Bachelors.jpg" alt="Graduation" class="graduation-img"/>
-                                <p class="text-xs text-gray-300">Completed degree with co-op experience across 3 GE rotations.</p>
+                                <p class="text-xs text-gray-300">GPA: 3.10</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- ROW 5: 2019 Boeing Flight Test vs 2019-2021 M.Sc -->
+                <!-- Row 5 -->
                 <div class="relative timeline-row">
                     <div class="left-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2019</span>
                         <h3 class="text-lg font-bold text-white">Boeing Flight Test</h3>
                         <p class="text-sm text-gray-400">F/A-18 Test Engineer</p>
-                        <p class="text-xs text-gray-500">China Lake, CA</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
                                 <img src="assets/Super-Hornet.png" alt="Super Hornet" class="hover-img-contain"/>
-                                <p class="text-xs text-gray-300">Flight safety, aircrew coordination, and database management.</p>
+                                <p class="text-xs text-gray-300">China Lake, CA</p>
                             </div>
                         </div>
                     </div>
-                    <div class="center-dot">
-                        <div class="trail-dot"></div>
-                    </div>
+                    <div class="center-dot"><div class="trail-dot"></div></div>
                     <div class="right-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2019 – 2021</span>
                         <h3 class="text-lg font-bold text-white">M.Sc. Aerospace Engineering</h3>
                         <p class="text-sm text-gray-400">Washington Univ. St. Louis</p>
-                        <p class="text-xs text-gray-500">GPA: 3.90</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
                                 <img src="assets/WashU.png" alt="WashU" class="hover-img-contain"/>
-                                <p class="text-xs text-gray-300">Spacecraft dynamics, control systems, and advanced propulsion.</p>
+                                <p class="text-xs text-gray-300">GPA: 3.90</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- ROW 6: 2019-2022 Boeing Mission Systems vs 2020-2022 Volunteer -->
+                <!-- Row 6 -->
                 <div class="relative timeline-row">
                     <div class="left-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2019 – 2022</span>
                         <h3 class="text-lg font-bold text-white">Boeing Mission Systems</h3>
                         <p class="text-sm text-gray-400">Hardware Design Engineer</p>
-                        <p class="text-xs text-gray-500">St. Louis, MO</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
                                 <img src="assets/Growler.png" alt="Growler" class="hover-img-contain"/>
-                                <p class="text-xs text-gray-300">EA-18G, RF integration, MBSE (Cameo), Jira workflows.</p>
+                                <p class="text-xs text-gray-300">St. Louis, MO</p>
                             </div>
                         </div>
                     </div>
-                    <div class="center-dot">
-                        <div class="trail-dot"></div>
-                    </div>
+                    <div class="center-dot"><div class="trail-dot"></div></div>
                     <div class="right-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2020 – 2022</span>
                         <h3 class="text-lg font-bold text-white">Volunteer & Outreach</h3>
                         <ul class="text-sm text-gray-400 space-y-1">
-                            <li>• Volunteer Chair – SHPE St. Louis Gateway</li>
-                            <li>• FIRST Lego League & Robotics Mentor</li>
-                            <li>• STEM Outreach & Community Engagement</li>
+                            <li>• Volunteer Chair – SHPE St. Louis</li>
+                            <li>• FIRST Lego League Mentor</li>
                         </ul>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
                                 <img src="assets/LA-Volunteer.jpg" alt="Volunteer" class="hover-img-cover"/>
-                                <p class="text-xs text-gray-300">Community engagement, robotics coaching, STEM advocacy.</p>
+                                <p class="text-xs text-gray-300">Community engagement, robotics coaching.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- ROW 7: 2022-2026 Boeing Space & Launch vs 2021-2026 Mentorship -->
+                <!-- Row 7 -->
                 <div class="relative timeline-row">
                     <div class="left-side timeline-item group">
                         <span class="text-xs text-brand font-mono">2022 – 2026</span>
                         <h3 class="text-lg font-bold text-white">Boeing Space & Launch</h3>
                         <p class="text-sm text-gray-400">System Test Developer III</p>
-                        <p class="text-xs text-gray-500">El Segundo, CA</p>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
                                 <img src="assets/Satellite-Icon.png" alt="Satellite" class="hover-img-contain"/>
-                                <p class="text-xs text-gray-300">Satellite I&T, RF, SIL/HIL, and Technical Leadership.</p>
+                                <p class="text-xs text-gray-300">El Segundo, CA</p>
                             </div>
                         </div>
                     </div>
@@ -597,15 +557,14 @@
                         <span class="text-xs text-brand font-mono">2021 – 2026</span>
                         <h3 class="text-lg font-bold text-white">Mentorship & Leadership</h3>
                         <ul class="text-sm text-gray-400 space-y-1">
-                            <li>• Mentor – 2nd Year ME Undergraduate (UMass)</li>
-                            <li>• Mentor – 3rd Year EE Undergraduate (Boeing/WUSTL)</li>
-                            <li>• Technical Lead – Safety & Quality Org</li>
-                            <li>• Coordinator – Test Engineering Council</li>
+                            <li>• Mentor – ME Undergraduate (UMass)</li>
+                            <li>• Mentor – EE Undergraduate (WUSTL)</li>
+                            <li>• Technical Lead – Safety & Quality</li>
                         </ul>
                         <div class="hover-card">
                             <div class="bg-dark-800 border border-brand/30 rounded-xl p-3">
-                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=300&h=200&fit=crop&crop=center" alt="Engineering Leadership" class="hover-img-cover"/>
-                                <p class="text-xs text-gray-300">Resume coaching, professional networking, career guidance.</p>
+                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=300&h=200&fit=crop&crop=center" alt="Leadership" class="hover-img-cover"/>
+                                <p class="text-xs text-gray-300">Resume coaching, career guidance.</p>
                             </div>
                         </div>
                     </div>
@@ -616,80 +575,17 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- LESSONS LEARNED FROM EXPERIENCE (Projects Section) -->
-    <!-- ============================================================ -->
-    <section id="lessons" class="py-20 px-6 bg-dark-800/30 border-t border-b border-dark-700/50">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-white">
-                    <i class="fas fa-graduation-cap text-brand mr-3"></i><span id="lessons-title">Lessons Learned from Experience</span>
-                </h2>
-                <p class="text-gray-400 mt-2"><span id="lessons-subtitle">Key takeaways from engineering challenges</span></p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Card 1: Satellite I&T -->
-                <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/50 transition group">
-                    <div class="project-img-wrap">
-                        <img src="assets/Satellite-Test.jpg" alt="Satellite I&T" class="project-img group-hover:scale-105"/>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="text-xl font-bold text-white">Satellite I&T</h3>
-                        <p class="text-gray-400 text-sm mt-1">System integration & test execution</p>
-                        <ul class="text-gray-300 text-sm mt-3 space-y-1">
-                            <li>• <span class="text-brand">Lesson:</span> Early RF testing reduces anomalies</li>
-                            <li>• <span class="text-brand">Impact:</span> 22% reduction in test campaign duration</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Card 2: Flight Test Engineering -->
-                <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/50 transition group">
-                    <div class="project-img-wrap">
-                        <img src="assets/FTE.JPG" alt="Flight Test Engineering" class="project-img group-hover:scale-105"/>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="text-xl font-bold text-white">Flight Test Engineering</h3>
-                        <p class="text-gray-400 text-sm mt-1">F/A-18 test & evaluation</p>
-                        <ul class="text-gray-300 text-sm mt-3 space-y-1">
-                            <li>• <span class="text-brand">Lesson:</span> Safety-first mindset is non-negotiable</li>
-                            <li>• <span class="text-brand">Impact:</span> 100% flight test archive integrity</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Card 3: CAD/FEA Mechanical Design -->
-                <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/50 transition group">
-                    <div class="project-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1542296332-2e4473faf563?w=600&h=400&fit=crop" alt="Commercial Airplane" class="project-img group-hover:scale-105"/>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="text-xl font-bold text-white">CAD/FEA Mechanical Design</h3>
-                        <p class="text-gray-400 text-sm mt-1">Aircraft structural analysis</p>
-                        <ul class="text-gray-300 text-sm mt-3 space-y-1">
-                            <li>• <span class="text-brand">Lesson:</span> Iteration beats perfection</li>
-                            <li>• <span class="text-brand">Impact:</span> Reduced mass by 18% on antenna bracket</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- ABOUT ME SECTION (8 Cards - Subtitle Removed) -->
+    <!-- ABOUT ME SECTION -->
     <!-- ============================================================ -->
     <section id="about" class="py-20 px-6 bg-dark-800/20 border-t border-b border-dark-700/50">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-white">
-                    <i class="fas fa-user-astronaut text-brand mr-3"></i><span id="about-title">About Me</span>
+                    <i class="fas fa-user-astronaut text-brand mr-3"></i>About Me
                 </h2>
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-
-                <!-- Mentorship -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
                     <div class="w-full h-32 overflow-hidden">
                         <img src="assets/Mentorship.png" alt="Mentorship" class="about-img-contain"/>
@@ -700,7 +596,6 @@
                     </div>
                 </div>
 
-                <!-- Tutoring -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
                     <div class="w-full h-32 overflow-hidden">
                         <img src="assets/Tutoring.png" alt="Tutoring" class="about-img-contain"/>
@@ -711,7 +606,6 @@
                     </div>
                 </div>
 
-                <!-- Volunteer -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
                     <div class="w-full h-32 overflow-hidden">
                         <img src="assets/LA-Volunteer.jpg" alt="Volunteer" class="about-img-cover"/>
@@ -722,7 +616,6 @@
                     </div>
                 </div>
 
-                <!-- Familia -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
                     <div class="w-full h-32 overflow-hidden">
                         <img src="assets/Familia.png" alt="Familia" class="about-img-contain"/>
@@ -733,7 +626,6 @@
                     </div>
                 </div>
 
-                <!-- Polaroids -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
                     <div class="w-full h-32 overflow-hidden">
                         <img src="assets/Polaroid.png" alt="Polaroids" class="about-img-contain"/>
@@ -744,7 +636,6 @@
                     </div>
                 </div>
 
-                <!-- Summer Aerospace Games -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
                     <div class="w-full h-32 overflow-hidden">
                         <img src="assets/AeroSpace-Games.jpg" alt="Aerospace Games" class="about-img-cover"/>
@@ -755,7 +646,6 @@
                     </div>
                 </div>
 
-                <!-- Vintage 80s Tech -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-brand/30 transition group">
                     <div class="w-full h-32 overflow-hidden">
                         <img src="assets/Truck.png" alt="Vintage Tech" class="about-img-contain"/>
@@ -766,7 +656,6 @@
                     </div>
                 </div>
 
-                <!-- Languages -->
                 <div class="bg-dark-800 rounded-xl overflow-hidden border border-brand/30 shadow-lg shadow-brand/5 transition group">
                     <div class="w-full h-32 overflow-hidden bg-dark-900/50 flex items-center justify-center">
                         <img src="assets/UCSD.png" alt="Languages" class="about-img-logo"/>
@@ -790,9 +679,9 @@
     <!-- ============================================================ -->
     <section id="contact" class="py-20 px-6 text-center max-w-3xl mx-auto border-t border-dark-700/50">
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-            <i class="fas fa-paper-plane text-brand mr-3"></i><span id="contact-title">Let's Connect</span>
+            <i class="fas fa-paper-plane text-brand mr-3"></i>Let's Connect
         </h2>
-        <p class="text-gray-400 mb-10" id="contact-desc">
+        <p class="text-gray-400 mb-10">
             Actively looking for career growth, collaboration, and conversations about space, flight, innovation projects, and instant photos strategies.
         </p>
 
@@ -814,7 +703,7 @@
             </div>
             <p class="text-sm text-gray-400">
                 <i class="fas fa-wrench text-brand mr-2"></i>
-                <span class="font-mono text-white" id="ready-text">READY ON DAY ONE</span>
+                <span class="font-mono text-white">READY ON DAY ONE</span>
             </p>
             <p class="text-xs text-gray-500 mt-2">
                 <i class="fas fa-map-pin mr-1"></i> El Segundo, CA
@@ -865,39 +754,19 @@
                 'title-text': 'Aerospace Engineer',
                 'cta-path': 'My Path',
                 'cta-contact': 'Send a Message',
-                'timeline-title': 'My Aerospace Path',
-                'timeline-left-label': 'Work Experience',
-                'timeline-right-label': 'Education & Leadership',
-                'lessons-title': 'Lessons Learned from Experience',
-                'lessons-subtitle': 'Key takeaways from engineering challenges',
-                'about-title': 'About Me',
-                'contact-title': 'Let\'s Connect',
-                'contact-desc': 'Actively looking for career growth, collaboration, and conversations about space, flight, innovation projects, and instant photos strategies.',
-                'ready-text': 'READY ON DAY ONE'
             },
             pt: {
                 'title-text': 'Engenheiro Aeroespacial',
                 'cta-path': 'Meu Caminho',
                 'cta-contact': 'Enviar Mensagem',
-                'timeline-title': 'Meu Caminho Aeroespacial',
-                'timeline-left-label': 'Experiência Profissional',
-                'timeline-right-label': 'Educação & Liderança',
-                'lessons-title': 'Lições Aprendidas com a Experiência',
-                'lessons-subtitle': 'Principais aprendizados dos desafios de engenharia',
-                'about-title': 'Sobre Mim',
-                'contact-title': 'Vamos Conectar',
-                'contact-desc': 'Buscando ativamente crescimento profissional, colaboração e conversas sobre espaço, voo, projetos de inovação e estratégias de fotos instantâneas.',
-                'ready-text': 'PRONTO NO PRIMEIRO DIA'
             }
         };
 
         function setLanguage(lang) {
             document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
             document.getElementById(`lang-${lang}`).classList.add('active');
-
             const t = translations[lang];
             if (!t) return;
-
             Object.keys(t).forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.textContent = t[id];
