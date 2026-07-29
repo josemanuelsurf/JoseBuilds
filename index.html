@@ -6,7 +6,7 @@
     <title>Jose M. Arreaga · Aerospace Engineer</title>
 
     <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="C:\Users\josea\Downloads\Moon July.png"></script>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
@@ -38,20 +38,6 @@
                 background-attachment: scroll;
                 background-image: url('https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001491/original/GSFC_20171208_Archive_e001491~orig.jpg');
             }
-        }
-
-        /* ---- Smooth slide-down toggle ---- */
-        .toggle-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
-            opacity: 0;
-        }
-        .toggle-content.open {
-            max-height: 3000px;
-            opacity: 1;
-            padding-top: 2rem;
-            padding-bottom: 2rem;
         }
 
         /* ---- Trail / Map Line (Center vertical) ---- */
@@ -118,7 +104,7 @@
 <body class="bg-dark-900/80 text-gray-300 font-sans antialiased">
 
     <!-- ============================================================ -->
-    <!-- NAVBAR -->
+    <!-- NAVBAR (UPDATED: My Path, Projects, Resume, Contact) -->
     <!-- ============================================================ -->
     <nav class="fixed top-0 left-0 w-full z-50 glass border-b border-brand/30">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -126,19 +112,20 @@
                 <i class="fas fa-rocket text-brand mr-2"></i>JoseBuilds
             </a>
             <div class="hidden md:flex space-x-8 text-sm font-medium">
-                <a href="#status" class="hover:text-brand-light transition">Status</a>
-                <a href="#map" class="hover:text-brand-light transition">Aerospace Path</a>
-                <a href="#about" class="hover:text-brand-light transition">About Me</a>
+                <a href="#map" class="hover:text-brand-light transition">My Path</a>
+                <a href="/PROJECTS.html" class="hover:text-brand-light transition">Projects</a>
+                <a href="/resume.pdf" target="_blank" class="hover:text-brand-light transition">Resume</a>
                 <a href="#contact" class="hover:text-brand-light transition">Contact</a>
             </div>
+            <!-- Mobile Hamburger -->
             <details class="md:hidden">
                 <summary class="list-none cursor-pointer text-gray-400 hover:text-white">
                     <i class="fas fa-bars text-xl"></i>
                 </summary>
                 <div class="absolute right-4 top-16 w-48 glass rounded-xl border border-brand/30 p-4 flex flex-col space-y-3 text-sm">
-                    <a href="#status" class="hover:text-brand-light transition">Status</a>
-                    <a href="#map" class="hover:text-brand-light transition">Aerospace Path</a>
-                    <a href="#about" class="hover:text-brand-light transition">About Me</a>
+                    <a href="#map" class="hover:text-brand-light transition">My Path</a>
+                    <a href="/PROJECTS.html" class="hover:text-brand-light transition">Projects</a>
+                    <a href="/resume.pdf" target="_blank" class="hover:text-brand-light transition">Resume</a>
                     <a href="#contact" class="hover:text-brand-light transition">Contact</a>
                 </div>
             </details>
@@ -172,7 +159,7 @@
             </div>
 
             <div class="mt-10 flex flex-wrap justify-center gap-4">
-                <a href="#status" class="px-8 py-3 rounded-full bg-brand hover:bg-brand-dark text-white font-semibold transition shadow-lg shadow-brand/30 flex items-center gap-2">
+                <a href="#map" class="px-8 py-3 rounded-full bg-brand hover:bg-brand-dark text-white font-semibold transition shadow-lg shadow-brand/30 flex items-center gap-2">
                     <i class="fas fa-timeline"></i> My Path
                 </a>
                 <a href="#contact" class="px-8 py-3 rounded-full border border-dark-600 hover:border-brand text-gray-300 hover:text-white font-semibold transition flex items-center gap-2">
@@ -183,88 +170,13 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- STATUS TOGGLE (Past, Present, Future) -->
-    <!-- ============================================================ -->
-    <section id="status" class="py-16 px-6 border-t border-dark-700/50 bg-dark-800/30">
-        <div class="max-w-6xl mx-auto">
-            <button onclick="toggleSection('statusContent')" class="w-full text-left group flex items-center justify-between p-4 rounded-xl border border-dark-700 hover:border-brand transition bg-dark-800/50">
-                <div>
-                    <h2 class="text-2xl md:text-3xl font-bold text-white">
-                        <i class="fas fa-arrows-rotate text-brand mr-3"></i> Status
-                    </h2>
-                    <p class="text-gray-500 text-sm mt-1">Past · Present · Future (click to expand)</p>
-                </div>
-                <i class="fas fa-chevron-down text-brand text-xl transition-transform duration-300" id="statusContentIcon"></i>
-            </button>
-
-            <div id="statusContent" class="toggle-content">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
-                    <!-- PAST -->
-                    <div class="bg-dark-800 rounded-xl p-6 border border-dark-700 hover:border-brand/30 transition">
-                        <div class="flex items-center gap-2 text-brand text-sm font-mono mb-3">
-                            <i class="fas fa-clock-rotate-left"></i> PAST
-                        </div>
-                        <h3 class="text-xl font-bold text-white">Boeing Space & Launch</h3>
-                        <p class="text-gray-400 text-sm mt-1">System Test Developer III</p>
-                        <p class="text-gray-500 text-xs mt-2">
-                            <i class="fas fa-map-pin text-brand mr-1"></i> El Segundo, CA · 2022 – 2026
-                        </p>
-                        <div class="mt-3 flex flex-wrap gap-2">
-                            <span class="text-xs px-2 py-1 bg-dark-700 rounded-full border border-dark-600">Satellite I&T</span>
-                            <span class="text-xs px-2 py-1 bg-dark-700 rounded-full border border-dark-600">RF</span>
-                            <span class="text-xs px-2 py-1 bg-dark-700 rounded-full border border-dark-600">SIL/HIL</span>
-                        </div>
-                    </div>
-
-                    <!-- PRESENT -->
-                    <div class="bg-dark-800 rounded-xl p-6 border border-brand/30 shadow-lg shadow-brand/5 transition">
-                        <div class="flex items-center gap-2 text-brand text-sm font-mono mb-3">
-                            <i class="fas fa-bolt"></i> PRESENT
-                        </div>
-                        <h3 class="text-xl font-bold text-white">Open for Work</h3>
-                        <p class="text-gray-400 text-sm mt-1">Engineering Toolkit</p>
-                        <ul class="text-gray-300 text-sm mt-2 space-y-1">
-                            <li><i class="fas fa-map-pin text-brand w-5"></i> Located in Los Angeles, CA</li>
-                            <li><i class="fas fa-shield-halved text-brand w-5"></i> Active DoD Clearance</li>
-                            <li><i class="fas fa-expand text-brand w-5"></i> Able to apply for TS SSBI Scope</li>
-                        </ul>
-                        <div class="mt-3 flex flex-wrap gap-2">
-                            <span class="text-xs px-2 py-1 bg-dark-700 rounded-full border border-dark-600">System Design</span>
-                            <span class="text-xs px-2 py-1 bg-dark-700 rounded-full border border-dark-600">Integration</span>
-                            <span class="text-xs px-2 py-1 bg-dark-700 rounded-full border border-dark-600">Leadership</span>
-                        </div>
-                    </div>
-
-                    <!-- FUTURE -->
-                    <div class="bg-dark-800 rounded-xl p-6 border border-dark-700 hover:border-brand/30 transition">
-                        <div class="flex items-center gap-2 text-brand text-sm font-mono mb-3">
-                            <i class="fas fa-rocket"></i> FUTURE
-                        </div>
-                        <h3 class="text-xl font-bold text-white">Senior Aerospace Engineer & Developer</h3>
-                        <ul class="text-gray-400 text-sm mt-2 space-y-1">
-                            <li><i class="fas fa-jet-fighter text-brand w-5"></i> Navigating Future Aeronautics</li>
-                            <li><i class="fas fa-bolt text-brand w-5"></i> Disrupting Tech</li>
-                            <li><i class="fas fa-users text-brand w-5"></i> Technical Leader</li>
-                        </ul>
-                        <div class="mt-3 flex flex-wrap gap-2">
-                            <span class="text-xs px-2 py-1 bg-dark-700 rounded-full border border-dark-600">Autonomous</span>
-                            <span class="text-xs px-2 py-1 bg-dark-700 rounded-full border border-dark-600">Innovation</span>
-                            <span class="text-xs px-2 py-1 bg-dark-700 rounded-full border border-dark-600">Strategy</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- INTERACTIVE MAP: DUAL TIMELINE (Work Left | Edu/Leadership/Volunteer Right) -->
+    <!-- INTERACTIVE MAP: EXTENDED 7-ROW TIMELINE -->
     <!-- ============================================================ -->
     <section id="map" class="py-20 px-6 bg-dark-800/40 border-t border-b border-dark-700/50">
         <div class="max-w-5xl mx-auto">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-white">
-                    <i class="fas fa-map-location-dot text-brand mr-3"></i>Aerospace Path
+                    <i class="fas fa-map-location-dot text-brand mr-3"></i>My Aerospace Path
                 </h2>
                 <p class="text-gray-400 mt-2">
                     <i class="fas fa-briefcase text-brand mr-2"></i>Work Experience (Left) · 
@@ -274,37 +186,115 @@
 
             <div class="relative trail-line flex flex-col space-y-12 px-4 md:px-0">
 
-                <!-- ROW 1: 2015 GE Turbine Blade Research vs 2019 B.Sc -->
+                <!-- ROW 1: 2015 GE Research vs 2015-2019 B.Sc -->
                 <div class="relative flex flex-col md:flex-row items-start w-full max-w-4xl mx-auto gap-4 md:gap-8">
-                    <!-- Left: Work - GE Turbine Blade Research -->
                     <div class="md:w-1/2 text-right pr-8 order-2 md:order-1 timeline-item group">
                         <span class="text-xs text-brand font-mono">2015</span>
                         <h3 class="text-lg font-bold text-white">GE Aviation</h3>
-                        <p class="text-sm text-gray-400">Turbine Blade Plenum Designs</p>
-                        <p class="text-xs text-gray-500">Undergrad Research · Sponsored by GE</p>
+                        <p class="text-sm text-gray-400">Undergrad Research: Turbine Blade Plenum Designs</p>
+                        <p class="text-xs text-gray-500">Blade heat transfer · 3D modeling · Flow chamber testing</p>
                         <div class="hover-card absolute left-0 md:right-auto md:left-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="https://picsum.photos/seed/turbine/300/150" alt="Turbine research preview" class="rounded-lg w-full h-16 object-cover mb-2"/>
-                            <p class="text-xs text-gray-300">Blade heat transfer design, 3D modeling, flow chamber testing.</p>
+                            <div class="rounded-lg w-full h-16 bg-gradient-to-br from-brand/30 to-dark-600 mb-2 flex items-center justify-center text-xs text-gray-400">[Photo Placeholder]</div>
+                            <p class="text-xs text-gray-300">Researched turbine blade cooling efficiency and plenum designs.</p>
                         </div>
                     </div>
-                    <!-- Center Dot -->
                     <div class="order-1 md:order-2 flex flex-col items-center z-10 flex-shrink-0">
                         <div class="trail-dot"></div>
                     </div>
-                    <!-- Right: Education -->
                     <div class="md:w-1/2 text-left pl-8 order-3 timeline-item group">
-                        <span class="text-xs text-brand font-mono">2019</span>
+                        <span class="text-xs text-brand font-mono">2015 – 2019</span>
                         <h3 class="text-lg font-bold text-white">B.Sc. Mechanical Engineering</h3>
-                        <p class="text-sm text-gray-400">Univ. of Cincinnati</p>
+                        <p class="text-sm text-gray-400">University of Cincinnati</p>
                         <p class="text-xs text-gray-500">GPA: 3.10</p>
                         <div class="hover-card absolute right-0 md:right-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="https://picsum.photos/seed/uc/300/150" alt="UC preview" class="rounded-lg w-full h-16 object-cover mb-2"/>
-                            <p class="text-xs text-gray-300">Hands-on labs, thermodynamics, fluid mechanics.</p>
+                            <div class="rounded-lg w-full h-16 bg-gradient-to-br from-brand/30 to-dark-600 mb-2 flex items-center justify-center text-xs text-gray-400">[Photo Placeholder]</div>
+                            <p class="text-xs text-gray-300">Hands-on labs, thermodynamics, fluid mechanics, and materials.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- ROW 2: 2019 Boeing Flight Test vs 2021 M.Sc -->
+                <!-- ROW 2: 2016 GE Turbine Design R&D Intern -->
+                <div class="relative flex flex-col md:flex-row items-start w-full max-w-4xl mx-auto gap-4 md:gap-8">
+                    <div class="md:w-1/2 text-right pr-8 order-2 md:order-1 timeline-item group">
+                        <span class="text-xs text-brand font-mono">2016</span>
+                        <h3 class="text-lg font-bold text-white">GE Aviation</h3>
+                        <p class="text-sm text-gray-400">Turbine Design R&D Intern</p>
+                        <p class="text-xs text-gray-500">Advanced aerodynamics · CFD analysis · Blade design</p>
+                        <div class="hover-card absolute left-0 md:right-auto md:left-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
+                            <div class="rounded-lg w-full h-16 bg-gradient-to-br from-brand/30 to-dark-600 mb-2 flex items-center justify-center text-xs text-gray-400">[Photo Placeholder]</div>
+                            <p class="text-xs text-gray-300">Optimized turbine blade profiles for improved efficiency.</p>
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2 flex flex-col items-center z-10 flex-shrink-0">
+                        <div class="trail-dot"></div>
+                    </div>
+                    <div class="md:w-1/2 text-left pl-8 order-3 timeline-item group">
+                        <span class="text-xs text-brand font-mono">2016 – 2017</span>
+                        <h3 class="text-lg font-bold text-white">(Continued B.Sc.)</h3>
+                        <p class="text-sm text-gray-400">University of Cincinnati</p>
+                        <p class="text-xs text-gray-500">Co-op rotations</p>
+                        <div class="hover-card absolute right-0 md:right-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
+                            <div class="rounded-lg w-full h-16 bg-gradient-to-br from-brand/30 to-dark-600 mb-2 flex items-center justify-center text-xs text-gray-400">[Photo Placeholder]</div>
+                            <p class="text-xs text-gray-300">Balanced academic coursework with industry co-op experience.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ROW 3: 2017 GE Dust Deposition R&D Intern -->
+                <div class="relative flex flex-col md:flex-row items-start w-full max-w-4xl mx-auto gap-4 md:gap-8">
+                    <div class="md:w-1/2 text-right pr-8 order-2 md:order-1 timeline-item group">
+                        <span class="text-xs text-brand font-mono">2017</span>
+                        <h3 class="text-lg font-bold text-white">GE Aviation</h3>
+                        <p class="text-sm text-gray-400">Dust Deposition R&D Intern</p>
+                        <p class="text-xs text-gray-500">Particle impact · Erosion prevention · Material testing</p>
+                        <div class="hover-card absolute left-0 md:right-auto md:left-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
+                            <div class="rounded-lg w-full h-16 bg-gradient-to-br from-brand/30 to-dark-600 mb-2 flex items-center justify-center text-xs text-gray-400">[Photo Placeholder]</div>
+                            <p class="text-xs text-gray-300">Tested coatings to reduce particle impact damage on turbine blades.</p>
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2 flex flex-col items-center z-10 flex-shrink-0">
+                        <div class="trail-dot"></div>
+                    </div>
+                    <div class="md:w-1/2 text-left pl-8 order-3 timeline-item group">
+                        <span class="text-xs text-brand font-mono">2017 – 2018</span>
+                        <h3 class="text-lg font-bold text-white">(Continued B.Sc.)</h3>
+                        <p class="text-sm text-gray-400">University of Cincinnati</p>
+                        <p class="text-xs text-gray-500">Co-op rotations</p>
+                        <div class="hover-card absolute right-0 md:right-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
+                            <div class="rounded-lg w-full h-16 bg-gradient-to-br from-brand/30 to-dark-600 mb-2 flex items-center justify-center text-xs text-gray-400">[Photo Placeholder]</div>
+                            <p class="text-xs text-gray-300">Continued academic excellence while gaining industrial experience.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ROW 4: 2018-2019 GE Sensor Design vs 2019 Graduation -->
+                <div class="relative flex flex-col md:flex-row items-start w-full max-w-4xl mx-auto gap-4 md:gap-8">
+                    <div class="md:w-1/2 text-right pr-8 order-2 md:order-1 timeline-item group">
+                        <span class="text-xs text-brand font-mono">2018 – 2019</span>
+                        <h3 class="text-lg font-bold text-white">GE Aviation</h3>
+                        <p class="text-sm text-gray-400">Sensor Design & Infra-Engineer</p>
+                        <p class="text-xs text-gray-500">600+ sensors · SQL DB · 3D modeling · Test systems</p>
+                        <div class="hover-card absolute left-0 md:right-auto md:left-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
+                            <div class="rounded-lg w-full h-16 bg-gradient-to-br from-brand/30 to-dark-600 mb-2 flex items-center justify-center text-xs text-gray-400">[Photo Placeholder]</div>
+                            <p class="text-xs text-gray-300">Designed instrumentation layouts and optimized sensor routing.</p>
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2 flex flex-col items-center z-10 flex-shrink-0">
+                        <div class="trail-dot"></div>
+                    </div>
+                    <div class="md:w-1/2 text-left pl-8 order-3 timeline-item group">
+                        <span class="text-xs text-brand font-mono">2019</span>
+                        <h3 class="text-lg font-bold text-white">B.Sc. Mechanical Engineering</h3>
+                        <p class="text-sm text-gray-400">University of Cincinnati — Graduation</p>
+                        <p class="text-xs text-gray-500">GPA: 3.10</p>
+                        <div class="hover-card absolute right-0 md:right-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
+                            <div class="rounded-lg w-full h-16 bg-gradient-to-br from-brand/30 to-dark-600 mb-2 flex items-center justify-center text-xs text-gray-400">[Photo Placeholder]</div>
+                            <p class="text-xs text-gray-300">Completed degree with co-op experience across 3 GE rotations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ROW 5: 2019 Boeing Flight Test vs 2019-2021 M.Sc -->
                 <div class="relative flex flex-col md:flex-row items-start w-full max-w-4xl mx-auto gap-4 md:gap-8">
                     <div class="md:w-1/2 text-right pr-8 order-2 md:order-1 timeline-item group">
                         <span class="text-xs text-brand font-mono">2019</span>
@@ -312,26 +302,26 @@
                         <p class="text-sm text-gray-400">F/A-18 Test Engineer</p>
                         <p class="text-xs text-gray-500">China Lake, CA</p>
                         <div class="hover-card absolute left-0 md:right-auto md:left-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="https://picsum.photos/seed/flighttest/300/150" alt="Flight Test preview" class="rounded-lg w-full h-16 object-cover mb-2"/>
-                            <p class="text-xs text-gray-300">Flight safety, aircrew coordination, database management.</p>
+                            <div class="rounded-lg w-full h-16 bg-gradient-to-br from-brand/30 to-dark-600 mb-2 flex items-center justify-center text-xs text-gray-400">[Photo Placeholder]</div>
+                            <p class="text-xs text-gray-300">Flight safety, aircrew coordination, and database management.</p>
                         </div>
                     </div>
                     <div class="order-1 md:order-2 flex flex-col items-center z-10 flex-shrink-0">
                         <div class="trail-dot"></div>
                     </div>
                     <div class="md:w-1/2 text-left pl-8 order-3 timeline-item group">
-                        <span class="text-xs text-brand font-mono">2021</span>
+                        <span class="text-xs text-brand font-mono">2019 – 2021</span>
                         <h3 class="text-lg font-bold text-white">M.Sc. Aerospace Engineering</h3>
                         <p class="text-sm text-gray-400">Washington Univ. St. Louis</p>
                         <p class="text-xs text-gray-500">GPA: 3.90</p>
                         <div class="hover-card absolute right-0 md:right-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="https://picsum.photos/seed/wustl/300/150" alt="WUSTL preview" class="rounded-lg w-full h-16 object-cover mb-2"/>
-                            <p class="text-xs text-gray-300">Spacecraft dynamics, control systems, propulsion.</p>
+                            <div class="rounded-lg w-full h-16 bg-gradient-to-br from-brand/30 to-dark-600 mb-2 flex items-center justify-center text-xs text-gray-400">[Photo Placeholder]</div>
+                            <p class="text-xs text-gray-300">Spacecraft dynamics, control systems, and advanced propulsion.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- ROW 3: 2019-2022 Boeing Mission Systems vs Research & Leadership -->
+                <!-- ROW 6: 2019-2022 Boeing Mission Systems vs 2020-2022 Volunteer -->
                 <div class="relative flex flex-col md:flex-row items-start w-full max-w-4xl mx-auto gap-4 md:gap-8">
                     <div class="md:w-1/2 text-right pr-8 order-2 md:order-1 timeline-item group">
                         <span class="text-xs text-brand font-mono">2019 – 2022</span>
@@ -339,29 +329,29 @@
                         <p class="text-sm text-gray-400">Hardware Design Engineer</p>
                         <p class="text-xs text-gray-500">St. Louis, MO</p>
                         <div class="hover-card absolute left-0 md:right-auto md:left-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="https://picsum.photos/seed/missionsys/300/150" alt="Mission Systems preview" class="rounded-lg w-full h-16 object-cover mb-2"/>
-                            <p class="text-xs text-gray-300">EA-18G, RF integration, MBSE (Cameo), Jira.</p>
+                            <div class="rounded-lg w-full h-16 bg-gradient-to-br from-brand/30 to-dark-600 mb-2 flex items-center justify-center text-xs text-gray-400">[Photo Placeholder]</div>
+                            <p class="text-xs text-gray-300">EA-18G, RF integration, MBSE (Cameo), Jira workflows.</p>
                         </div>
                     </div>
                     <div class="order-1 md:order-2 flex flex-col items-center z-10 flex-shrink-0">
                         <div class="trail-dot"></div>
                     </div>
                     <div class="md:w-1/2 text-left pl-8 order-3 timeline-item group">
-                        <span class="text-xs text-brand font-mono">2021</span>
-                        <h3 class="text-lg font-bold text-white">Research & Leadership</h3>
+                        <span class="text-xs text-brand font-mono">2020 – 2022</span>
+                        <h3 class="text-lg font-bold text-white">Volunteer & Outreach</h3>
                         <ul class="text-sm text-gray-400 space-y-1">
-                            <li>• 3D Modeler Teacher Assistant (WUSTL)</li>
-                            <li>• Aerospace Design & Analysis (WUSTL)</li>
-                            <li>• Boeing Engineering Mentor Program</li>
+                            <li>• Volunteer Chair – SHPE St. Louis Gateway</li>
+                            <li>• FIRST Lego League & Robotics Mentor</li>
+                            <li>• STEM Outreach & Community Engagement</li>
                         </ul>
                         <div class="hover-card absolute right-0 md:right-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="https://picsum.photos/seed/research/300/150" alt="Research preview" class="rounded-lg w-full h-16 object-cover mb-2"/>
-                            <p class="text-xs text-gray-300">CAD instruction, vibration analysis, mentoring.</p>
+                            <div class="rounded-lg w-full h-16 bg-gradient-to-br from-brand/30 to-dark-600 mb-2 flex items-center justify-center text-xs text-gray-400">[Photo Placeholder]</div>
+                            <p class="text-xs text-gray-300">Community engagement, robotics coaching, STEM advocacy.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- ROW 4: 2022-2026 Boeing Space & Launch vs Volunteer & Leadership -->
+                <!-- ROW 7: 2022-2026 Boeing Space & Launch vs 2021-2026 Mentorship -->
                 <div class="relative flex flex-col md:flex-row items-start w-full max-w-4xl mx-auto gap-4 md:gap-8">
                     <div class="md:w-1/2 text-right pr-8 order-2 md:order-1 timeline-item group">
                         <span class="text-xs text-brand font-mono">2022 – 2026</span>
@@ -369,125 +359,29 @@
                         <p class="text-sm text-gray-400">System Test Developer III</p>
                         <p class="text-xs text-gray-500">El Segundo, CA</p>
                         <div class="hover-card absolute left-0 md:right-auto md:left-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="https://picsum.photos/seed/space/300/150" alt="Space preview" class="rounded-lg w-full h-16 object-cover mb-2"/>
-                            <p class="text-xs text-gray-300">Satellite I&T, RF, SIL/HIL, Technical Leadership.</p>
+                            <div class="rounded-lg w-full h-16 bg-gradient-to-br from-brand/30 to-dark-600 mb-2 flex items-center justify-center text-xs text-gray-400">[Photo Placeholder]</div>
+                            <p class="text-xs text-gray-300">Satellite I&T, RF, SIL/HIL, and Technical Leadership.</p>
                         </div>
                     </div>
                     <div class="order-1 md:order-2 flex flex-col items-center z-10 flex-shrink-0">
                         <div class="trail-dot border-brand-light" style="border-color:#6B8AFC; box-shadow: 0 0 0 4px #6B8AFC, 0 0 30px rgba(74,108,247,0.6);"></div>
                     </div>
                     <div class="md:w-1/2 text-left pl-8 order-3 timeline-item group">
-                        <span class="text-xs text-brand font-mono">2020 – Present</span>
-                        <h3 class="text-lg font-bold text-white">Volunteer & Leadership</h3>
-                        <ul class="text-sm text-gray-400 space-y-1">
-                            <li>• Volunteer Chair – SHPE St. Louis Gateway</li>
-                            <li>• FIRST Lego League & Robotics Mentor</li>
-                            <li>• STEM Outreach & Community Engagement</li>
-                        </ul>
-                        <div class="hover-card absolute right-0 md:right-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="https://picsum.photos/seed/volunteer/300/150" alt="Volunteer preview" class="rounded-lg w-full h-16 object-cover mb-2"/>
-                            <p class="text-xs text-gray-300">Community engagement, robotics coaching, STEM advocacy.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ROW 5: Internships (Left) vs Additional Leadership (Right) -->
-                <div class="relative flex flex-col md:flex-row items-start w-full max-w-4xl mx-auto gap-4 md:gap-8">
-                    <div class="md:w-1/2 text-right pr-8 order-2 md:order-1 timeline-item group">
-                        <span class="text-xs text-brand font-mono">2018</span>
-                        <h3 class="text-lg font-bold text-white">GE Aviation Internship</h3>
-                        <p class="text-sm text-gray-400">Turbine Design Infra-Engineer</p>
-                        <p class="text-xs text-gray-500">Advance Design & Technology</p>
-                        <div class="hover-card absolute left-0 md:right-auto md:left-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="https://picsum.photos/seed/geintern/300/150" alt="GE Internship preview" class="rounded-lg w-full h-16 object-cover mb-2"/>
-                            <p class="text-xs text-gray-300">Blade heat transfer, 3D modeling, data analysis, flow chamber testing.</p>
-                        </div>
-                    </div>
-                    <div class="order-1 md:order-2 flex flex-col items-center z-10 flex-shrink-0">
-                        <div class="trail-dot"></div>
-                    </div>
-                    <div class="md:w-1/2 text-left pl-8 order-3 timeline-item group">
-                        <span class="text-xs text-brand font-mono">2021 – Present</span>
+                        <span class="text-xs text-brand font-mono">2021 – 2026</span>
                         <h3 class="text-lg font-bold text-white">Mentorship & Leadership</h3>
                         <ul class="text-sm text-gray-400 space-y-1">
                             <li>• Mentor – 2nd Year ME Undergraduate (UMass)</li>
                             <li>• Mentor – 3rd Year EE Undergraduate (Boeing/WUSTL)</li>
                             <li>• Technical Lead – Safety & Quality Org</li>
+                            <li>• Coordinator – Test Engineering Council</li>
                         </ul>
                         <div class="hover-card absolute right-0 md:right-0 top-full mt-2 w-64 bg-dark-800 border border-brand/30 rounded-xl p-3 shadow-2xl z-20">
-                            <img src="https://picsum.photos/seed/mentor/300/150" alt="Mentorship preview" class="rounded-lg w-full h-16 object-cover mb-2"/>
+                            <div class="rounded-lg w-full h-16 bg-gradient-to-br from-brand/30 to-dark-600 mb-2 flex items-center justify-center text-xs text-gray-400">[Photo Placeholder]</div>
                             <p class="text-xs text-gray-300">Resume coaching, professional networking, career guidance.</p>
                         </div>
                     </div>
                 </div>
 
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- ABOUT ME TOGGLE (Simplified: Mentorship, Tutoring, Volunteer, Familia, Polaroids, Chess/Guitar/Surf, Vintage 80s Tech, Languages) -->
-    <!-- ============================================================ -->
-    <section id="about" class="py-16 px-6 border-t border-dark-700/50 bg-dark-800/30">
-        <div class="max-w-6xl mx-auto">
-            <button onclick="toggleSection('aboutBio')" class="w-full text-left group flex items-center justify-between p-4 rounded-xl border border-dark-700 hover:border-brand transition bg-dark-800/50">
-                <div>
-                    <h2 class="text-2xl md:text-3xl font-bold text-white">
-                        <i class="fas fa-user-astronaut text-brand mr-3"></i> About Me
-                    </h2>
-                    <p class="text-gray-500 text-sm mt-1">Mentorship · Tutoring · Volunteer · Familia · Polaroids · Chess/Guitar/Surf · Vintage 80s Tech · Languages</p>
-                </div>
-                <i class="fas fa-chevron-down text-brand text-xl transition-transform duration-300" id="aboutBioIcon"></i>
-            </button>
-
-            <div id="aboutBio" class="toggle-content">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
-                    
-                    <div class="bg-dark-800 rounded-xl p-5 border border-dark-700 hover:border-brand/30 transition">
-                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-chalkboard-user mr-2"></i>Mentorship</h4>
-                        <p class="text-gray-300 text-sm mt-1">Guiding entry-level engineers in satellite quality and test integration at Boeing.</p>
-                    </div>
-
-                    <div class="bg-dark-800 rounded-xl p-5 border border-dark-700 hover:border-brand/30 transition">
-                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-chalkboard mr-2"></i>Tutoring</h4>
-                        <p class="text-gray-300 text-sm mt-1">Supporting STEM students in math, physics, and engineering fundamentals.</p>
-                    </div>
-
-                    <div class="bg-dark-800 rounded-xl p-5 border border-dark-700 hover:border-brand/30 transition">
-                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-hand-holding-heart mr-2"></i>Volunteer</h4>
-                        <p class="text-gray-300 text-sm mt-1">Active in STEM outreach, FIRST Robotics, and community education initiatives.</p>
-                    </div>
-
-                    <div class="bg-dark-800 rounded-xl p-5 border border-dark-700 hover:border-brand/30 transition">
-                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-people-group mr-2"></i>Familia</h4>
-                        <p class="text-gray-300 text-sm mt-1">Deeply rooted in family values—community, resilience, and support.</p>
-                    </div>
-
-                    <div class="bg-dark-800 rounded-xl p-5 border border-dark-700 hover:border-brand/30 transition">
-                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-camera mr-2"></i>Polaroids</h4>
-                        <p class="text-gray-300 text-sm mt-1">Capturing moments from flight lines to integration labs—documenting the journey.</p>
-                    </div>
-
-                    <div class="bg-dark-800 rounded-xl p-5 border border-dark-700 hover:border-brand/30 transition">
-                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-chess-queen mr-2"></i>Chess · Guitar · Surf</h4>
-                        <p class="text-gray-300 text-sm mt-1">Strategic thinking, creative expression, and riding the waves.</p>
-                    </div>
-
-                    <div class="bg-dark-800 rounded-xl p-5 border border-dark-700 hover:border-brand/30 transition">
-                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-laptop mr-2"></i>Vintage 80s Tech</h4>
-                        <p class="text-gray-300 text-sm mt-1">Retro computing enthusiast—appreciating the roots of modern engineering.</p>
-                    </div>
-
-                    <div class="bg-dark-800 rounded-xl p-5 border border-brand/30 shadow-lg shadow-brand/5 transition">
-                        <h4 class="text-brand font-bold text-sm uppercase tracking-wider"><i class="fas fa-language mr-2"></i>Languages</h4>
-                        <ul class="text-gray-300 text-sm mt-1 space-y-1">
-                            <li>• English (Native)</li>
-                            <li>• Spanish (Native)</li>
-                            <li>• Portuguese (1st Year – UC San Diego)</li>
-                        </ul>
-                    </div>
-
-                </div>
             </div>
         </div>
     </section>
@@ -547,17 +441,6 @@
     <!-- JAVASCRIPT -->
     <!-- ============================================================ -->
     <script>
-        function toggleSection(id) {
-            const content = document.getElementById(id);
-            const icon = document.getElementById(id + 'Icon');
-            if (content) {
-                content.classList.toggle('open');
-                if (icon) {
-                    icon.style.transform = content.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
-                }
-            }
-        }
-
         const titles = [
             "Software Developer",
             "System I&T",
