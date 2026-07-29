@@ -1,208 +1,446 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JoseBuilds · Engineering Portfolio</title>
+    <title>Jose M. Arreaga · Aerospace Engineer</title>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for Icons -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <!-- Custom smooth scroll & subtle glow -->
-    <style>
-        html { scroll-behavior: smooth; }
-        .glow-text {
-            background: linear-gradient(135deg, #60A5FA, #A78BFA, #F472B6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: { DEFAULT: '#1E3A8A', light: '#3B5BA5', dark: '#0F285C' },
+                        dark: { 900: '#0a0a0b', 800: '#111113', 700: '#1a1a1f', 600: '#24242c' },
+                    }
+                }
+            }
         }
-        .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.6);
-            border-color: #4B5563;
+    </script>
+
+    <style>
+        /* Smooth slide-down toggle */
+        .toggle-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, padding 0.3s ease;
+            opacity: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .toggle-content.open {
+            max-height: 3000px; /* large enough for content */
+            opacity: 1;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+        /* Trail / Map line */
+        .trail-line {
+            position: relative;
+        }
+        .trail-line::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #1E3A8A, #3B5BA5, #1E3A8A);
+            border-radius: 4px;
+            opacity: 0.6;
+        }
+        .trail-dot {
+            position: relative;
+            z-index: 2;
+            width: 20px;
+            height: 20px;
+            background: #1E3A8A;
+            border: 4px solid #0a0a0b;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px #1E3A8A, 0 0 20px rgba(30, 58, 138, 0.4);
+        }
+        .trail-dot .fa-solid {
+            font-size: 1.5rem;
+            margin-left: -0.75rem;
+            margin-top: -0.75rem;
+            color: white;
+            background: #1E3A8A;
+            padding: 6px;
+            border-radius: 50%;
+            border: 2px solid #0a0a0b;
+        }
+        @media (min-width: 768px) {
+            .trail-line::before {
+                left: 50%;
+                height: 100%;
+            }
+        }
+        /* Glassmorphism */
+        .glass {
+            background: rgba(17, 17, 19, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(30, 58, 138, 0.3);
+        }
+        .text-navy-glow {
+            text-shadow: 0 0 40px rgba(30, 58, 138, 0.3);
         }
     </style>
 </head>
 
-<body class="bg-gray-950 text-gray-200 font-sans antialiased">
+<body class="bg-dark-900 text-gray-300 font-sans antialiased">
 
-    <!-- ========== HERO SECTION ========== -->
-    <section id="hero" class="min-h-screen flex items-center justify-center px-6 py-20 relative overflow-hidden">
-        <!-- Subtle background orb -->
-        <div class="absolute top-[-20%] right-[-10%] w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-[-20%] left-[-10%] w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="max-w-4xl mx-auto text-center z-10">
-            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-4">
-                Jose <span class="glow-text">Builds</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-400 font-light mb-6">
-                Software Engineer · Systems Thinker · Creator
-            </p>
-            <p class="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                I architect reliable systems, write clean code, and turn complex
-                problems into scalable solutions. Currently building the next
-                generation of developer tooling.
-            </p>
-            <div class="mt-10 flex flex-wrap justify-center gap-4">
-                <a href="#projects"
-                class="px-8 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-medium transition shadow-lg shadow-blue-600/30">
-                <i class="fas fa-code mr-2"></i> See My Work
+    <!-- ============================================================ -->
+    <!-- NAVBAR -->
+    <!-- ============================================================ -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass border-b border-navy/30">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#hero" class="text-xl font-bold tracking-tight text-white hover:text-navy-light transition">
+                <i class="fas fa-rocket text-navy mr-2"></i>JoseBuilds
             </a>
-            <a href="#contact"
-            class="px-8 py-3 rounded-full border border-gray-700 hover:border-gray-400 text-gray-300 hover:text-white font-medium transition">
-            <i class="fas fa-paper-plane mr-2"></i> Contact
-        </a>
-    </div>
-</div>
-</section>
-
-<!-- ========== TECH STACK ========== -->
-<section id="tech" class="py-20 px-6 bg-gray-900/50 border-y border-gray-800">
-    <div class="max-w-5xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
-            <span class="glow-text">Engineering Stack</span>
-        </h2>
-        <p class="text-gray-400 text-center mb-12">Tools & technologies I work with daily</p>
-
-        <div class="flex flex-wrap justify-center gap-4">
-            <!-- Tech Tags -->
-            <span class="px-5 py-2 bg-gray-800 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition"><i class="fab fa-js-square text-yellow-400 mr-2"></i>JavaScript / TypeScript</span>
-            <span class="px-5 py-2 bg-gray-800 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition"><i class="fab fa-python text-blue-400 mr-2"></i>Python</span>
-            <span class="px-5 py-2 bg-gray-800 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition"><i class="fab fa-react text-cyan-400 mr-2"></i>React & Next.js</span>
-            <span class="px-5 py-2 bg-gray-800 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition"><i class="fas fa-database text-emerald-400 mr-2"></i>PostgreSQL / MongoDB</span>
-            <span class="px-5 py-2 bg-gray-800 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition"><i class="fas fa-cloud text-sky-400 mr-2"></i>AWS / Vercel</span>
-            <span class="px-5 py-2 bg-gray-800 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition"><i class="fas fa-code-branch text-rose-400 mr-2"></i>Docker / K8s</span>
-            <span class="px-5 py-2 bg-gray-800 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition"><i class="fab fa-golang text-blue-300 mr-2"></i>Go</span>
-            <span class="px-5 py-2 bg-gray-800 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition"><i class="fas fa-terminal text-green-400 mr-2"></i>Bash / Linux</span>
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#career" class="hover:text-navy-light transition">Career</a>
+                <a href="#map" class="hover:text-navy-light transition">Journey</a>
+                <a href="#about" class="hover:text-navy-light transition">About</a>
+                <a href="#contact" class="hover:text-navy-light transition">Contact</a>
+            </div>
+            <!-- Mobile Hamburger -->
+            <details class="md:hidden">
+                <summary class="list-none cursor-pointer text-gray-400 hover:text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </summary>
+                <div class="absolute right-4 top-16 w-48 glass rounded-xl border border-navy/30 p-4 flex flex-col space-y-3 text-sm">
+                    <a href="#career" class="hover:text-navy-light transition">Career</a>
+                    <a href="#map" class="hover:text-navy-light transition">Journey</a>
+                    <a href="#about" class="hover:text-navy-light transition">About</a>
+                    <a href="#contact" class="hover:text-navy-light transition">Contact</a>
+                </div>
+            </details>
         </div>
-    </div>
-</section>
+    </nav>
 
-<!-- ========== PROJECTS / CAREER ========== -->
-<section id="projects" class="py-20 px-6">
-    <div class="max-w-6xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
-            <span class="glow-text">Projects & Impact</span>
-        </h2>
-        <p class="text-gray-400 text-center mb-12">A few things I've built recently</p>
+    <!-- ============================================================ -->
+    <!-- HERO SECTION (Name with Navy 'M') -->
+    <!-- ============================================================ -->
+    <section id="hero" class="min-h-screen flex items-center justify-center px-6 pt-24 pb-20 relative overflow-hidden">
+        <!-- Orbs -->
+        <div class="absolute top-[-30%] right-[-20%] w-[600px] h-[600px] bg-navy/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-[-30%] left-[-20%] w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <!-- Name: Jose (M) Arreaga -->
+            <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.1]">
+                <span class="text-white">Jose</span>
+                <span class="text-navy" style="color: #1E3A8A;">M</span>
+                <span class="text-white">Arreaga</span>
+            </h1>
+            <!-- Subtitle -->
+            <p class="text-xl md:text-2xl text-gray-400 mt-4 font-light tracking-wide">
+                <i class="fas fa-satellite text-navy mr-2"></i>
+                System Test & Aerospace Engineer
+            </p>
+            <p class="text-base text-gray-500 max-w-2xl mx-auto mt-2">
+                Spacecraft Integration · Flight Test · Hardware Design · MBSE
+            </p>
 
-            <!-- Project Card 1 -->
-            <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 card-hover transition duration-300">
-                <div class="w-12 h-12 rounded-xl bg-blue-600/20 flex items-center justify-center mb-4">
-                    <i class="fas fa-robot text-blue-400 text-xl"></i>
-                </div>
-                <h3 class="text-xl font-semibold mb-2">Local AI Orchestrator</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    Ollama-powered microservice that routes prompts to the best local models based on context length and latency.
-                </p>
-                <div class="mt-4 flex flex-wrap gap-2">
-                    <span class="text-xs px-3 py-1 bg-gray-800 rounded-full border border-gray-700">Go</span>
-                    <span class="text-xs px-3 py-1 bg-gray-800 rounded-full border border-gray-700">Ollama</span>
-                    <span class="text-xs px-3 py-1 bg-gray-800 rounded-full border border-gray-700">WebSockets</span>
-                </div>
+            <!-- CTA -->
+            <div class="mt-10 flex flex-wrap justify-center gap-4">
+                <a href="#career" class="px-8 py-3 rounded-full bg-navy hover:bg-navy-dark text-white font-semibold transition shadow-lg shadow-navy/30 flex items-center gap-2">
+                    <i class="fas fa-timeline"></i> View My Career
+                </a>
+                <a href="#contact" class="px-8 py-3 rounded-full border border-dark-600 hover:border-navy text-gray-300 hover:text-white font-semibold transition flex items-center gap-2">
+                    <i class="fas fa-paper-plane"></i> Connect
+                </a>
             </div>
-
-            <!-- Project Card 2 -->
-            <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 card-hover transition duration-300">
-                <div class="w-12 h-12 rounded-xl bg-purple-600/20 flex items-center justify-center mb-4">
-                    <i class="fas fa-chart-line text-purple-400 text-xl"></i>
-                </div>
-                <h3 class="text-xl font-semibold mb-2">DevMetrics Dashboard</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    Real-time observability for CI/CD pipelines, visualizing build times, test flakiness, and deployment frequency.
-                </p>
-                <div class="mt-4 flex flex-wrap gap-2">
-                    <span class="text-xs px-3 py-1 bg-gray-800 rounded-full border border-gray-700">React</span>
-                    <span class="text-xs px-3 py-1 bg-gray-800 rounded-full border border-gray-700">D3</span>
-                    <span class="text-xs px-3 py-1 bg-gray-800 rounded-full border border-gray-700">Express</span>
-                </div>
-            </div>
-
-            <!-- Project Card 3 -->
-            <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 card-hover transition duration-300">
-                <div class="w-12 h-12 rounded-xl bg-emerald-600/20 flex items-center justify-center mb-4">
-                    <i class="fas fa-cubes text-emerald-400 text-xl"></i>
-                </div>
-                <h3 class="text-xl font-semibold mb-2">Infra-as-Code Studio</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    VS Code extension that visualizes Terraform state graphs and provides intelligent auto-complete for AWS resources.
-                </p>
-                <div class="mt-4 flex flex-wrap gap-2">
-                    <span class="text-xs px-3 py-1 bg-gray-800 rounded-full border border-gray-700">TypeScript</span>
-                    <span class="text-xs px-3 py-1 bg-gray-800 rounded-full border border-gray-700">Terraform</span>
-                    <span class="text-xs px-3 py-1 bg-gray-800 rounded-full border border-gray-700">CDK</span>
-                </div>
-            </div>
-
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ========== CONTACT / LINKS ========== -->
-<section id="contact" class="py-20 px-6 bg-gray-900/50 border-t border-gray-800">
-    <div class="max-w-3xl mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">
-            <span class="glow-text">Let's Connect</span>
+    <!-- ============================================================ -->
+    <!-- CAREER BIO TOGGLE (SLIDE 1) -->
+    <!-- ============================================================ -->
+    <section id="career" class="py-16 px-6 border-t border-dark-700/50 bg-dark-800/20">
+        <div class="max-w-6xl mx-auto">
+            <!-- Toggle Button -->
+            <button onclick="toggleSection('careerBio')" class="w-full text-left group flex items-center justify-between p-4 rounded-xl border border-dark-700 hover:border-navy transition bg-dark-800/50">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">
+                        <i class="fas fa-arrows-rotate text-navy mr-3"></i> Career Bio
+                    </h2>
+                    <p class="text-gray-500 text-sm mt-1">Past · Present · Future (click to expand)</p>
+                </div>
+                <i class="fas fa-chevron-down text-navy text-xl transition-transform duration-300" id="careerBioIcon"></i>
+            </button>
+
+            <!-- Toggle Content -->
+            <div id="careerBio" class="toggle-content">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+                    <!-- PAST -->
+                    <div class="bg-dark-800 rounded-xl p-6 border border-dark-700">
+                        <div class="flex items-center gap-2 text-navy text-sm font-mono mb-3"><i class="fas fa-clock-rotate-left"></i> PAST</div>
+                        <ul class="space-y-2 text-gray-300 text-sm">
+                            <li><i class="fas fa-car text-navy w-5"></i> Restoring Cars</li>
+                            <li><i class="fas fa-university text-navy w-5"></i> UC San Diego</li>
+                            <li><i class="fas fa-language text-navy w-5"></i> 1st Yr Portuguese</li>
+                            <li><i class="fas fa-graduation-cap text-navy w-5"></i> B.Sc. Mechanical Eng. (UC)</li>
+                        </ul>
+                    </div>
+                    <!-- PRESENT -->
+                    <div class="bg-dark-800 rounded-xl p-6 border border-navy/30 shadow-lg shadow-navy/5">
+                        <div class="flex items-center gap-2 text-navy text-sm font-mono mb-3"><i class="fas fa-bolt"></i> PRESENT</div>
+                        <ul class="space-y-2 text-gray-300 text-sm">
+                            <li><i class="fas fa-microchip text-navy w-5"></i> Mid-Level System Test & Design</li>
+                            <li><i class="fas fa-building text-navy w-5"></i> Boeing · El Segundo</li>
+                            <li><i class="fas fa-plane text-navy w-5"></i> Aviator · 500+ Hrs</li>
+                            <li><i class="fas fa-user-graduate text-navy w-5"></i> M.Sc. Aerospace (WUSTL)</li>
+                        </ul>
+                    </div>
+                    <!-- FUTURE -->
+                    <div class="bg-dark-800 rounded-xl p-6 border border-dark-700">
+                        <div class="flex items-center gap-2 text-navy text-sm font-mono mb-3"><i class="fas fa-rocket"></i> FUTURE</div>
+                        <ul class="space-y-2 text-gray-300 text-sm">
+                            <li><i class="fas fa-robot text-navy w-5"></i> Autonomous Systems</li>
+                            <li><i class="fas fa-jet-fighter text-navy w-5"></i> Future Aero</li>
+                            <li><i class="fas fa-bolt text-navy w-5"></i> Disruptive Innovation</li>
+                            <li><i class="fas fa-users text-navy w-5"></i> Technical Leadership</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Extra from slide: Polaroids, Volunteer, Familia -->
+                <div class="mt-6 flex flex-wrap gap-6 justify-center text-sm text-gray-400 border-t border-dark-700 pt-6">
+                    <span><i class="fas fa-camera text-navy mr-2"></i> Polaroids</span>
+                    <span><i class="fas fa-hand-holding-heart text-navy mr-2"></i> Volunteer</span>
+                    <span><i class="fas fa-people-group text-navy mr-2"></i> Familia</span>
+                    <span><i class="fas fa-chalkboard-user text-navy mr-2"></i> Mentorship</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- INTERACTIVE MAP / TRAIL (Career Journey) -->
+    <!-- ============================================================ -->
+    <section id="map" class="py-20 px-6 bg-dark-800/30 border-t border-b border-dark-700/50">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-white">
+                    <i class="fas fa-map-location-dot text-navy mr-3"></i>My Engineering Trail
+                </h2>
+                <p class="text-gray-400 mt-2">Follow the path from design to flight to space</p>
+            </div>
+
+            <!-- Timeline Trail (Vertical, centered) -->
+            <div class="relative trail-line flex flex-col items-center space-y-12 px-4 md:px-0">
+
+                <!-- Stop 1: Cincinnati -->
+                <div class="relative flex flex-col md:flex-row items-center w-full max-w-2xl gap-4 md:gap-8">
+                    <div class="md:w-1/2 text-center md:text-right order-2 md:order-1">
+                        <span class="text-xs text-navy font-mono">2018</span>
+                        <h3 class="text-lg font-bold text-white">GE Aviation</h3>
+                        <p class="text-sm text-gray-400">Sensor Design Engineer</p>
+                        <p class="text-xs text-gray-500">Cincinnati, OH</p>
+                        <p class="text-xs text-gray-500 mt-1">Instrumentation · 600+ sensors · SQL</p>
+                    </div>
+                    <div class="order-1 md:order-2 flex flex-col items-center">
+                        <div class="trail-dot flex items-center justify-center">
+                            <i class="fas fa-microchip text-white text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 order-3 hidden md:block"></div>
+                </div>
+
+                <!-- Stop 2: China Lake -->
+                <div class="relative flex flex-col md:flex-row items-center w-full max-w-2xl gap-4 md:gap-8">
+                    <div class="md:w-1/2 order-2 md:order-2 text-center md:text-left">
+                        <span class="text-xs text-navy font-mono">2019</span>
+                        <h3 class="text-lg font-bold text-white">Boeing Flight Test</h3>
+                        <p class="text-sm text-gray-400">F/A-18 Test Engineer</p>
+                        <p class="text-xs text-gray-500">China Lake, CA</p>
+                        <p class="text-xs text-gray-500 mt-1">Flight safety · Aircrew coordination · DB</p>
+                    </div>
+                    <div class="order-1 md:order-1 flex flex-col items-center">
+                        <div class="trail-dot flex items-center justify-center">
+                            <i class="fas fa-jet-fighter text-white text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 order-3 hidden md:block"></div>
+                </div>
+
+                <!-- Stop 3: St. Louis -->
+                <div class="relative flex flex-col md:flex-row items-center w-full max-w-2xl gap-4 md:gap-8">
+                    <div class="md:w-1/2 text-center md:text-right order-2 md:order-1">
+                        <span class="text-xs text-navy font-mono">2019 – 2022</span>
+                        <h3 class="text-lg font-bold text-white">Boeing Mission Systems</h3>
+                        <p class="text-sm text-gray-400">Hardware Design Engineer</p>
+                        <p class="text-xs text-gray-500">St. Louis, MO</p>
+                        <p class="text-xs text-gray-500 mt-1">EA-18G · RF · MBSE (Cameo) · Jira</p>
+                    </div>
+                    <div class="order-1 md:order-2 flex flex-col items-center">
+                        <div class="trail-dot flex items-center justify-center">
+                            <i class="fas fa-satellite-dish text-white text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 order-3 hidden md:block"></div>
+                </div>
+
+                <!-- Stop 4: El Segundo (Current) -->
+                <div class="relative flex flex-col md:flex-row items-center w-full max-w-2xl gap-4 md:gap-8">
+                    <div class="md:w-1/2 order-2 md:order-2 text-center md:text-left">
+                        <span class="text-xs text-navy font-mono">2022 – Present</span>
+                        <h3 class="text-lg font-bold text-white">Boeing Space & Launch</h3>
+                        <p class="text-sm text-gray-400">System Test Developer III</p>
+                        <p class="text-xs text-gray-500">El Segundo, CA</p>
+                        <p class="text-xs text-gray-500 mt-1">Satellite I&T · RF · SIL/HIL · Leadership</p>
+                    </div>
+                    <div class="order-1 md:order-1 flex flex-col items-center">
+                        <div class="trail-dot flex items-center justify-center border-navy-light" style="border-color:#3B5BA5; box-shadow: 0 0 0 4px #3B5BA5, 0 0 30px rgba(30,58,138,0.6);">
+                            <i class="fas fa-rocket text-white text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 order-3 hidden md:block"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ABOUT ME TOGGLE (SLIDE 2) -->
+    <!-- ============================================================ -->
+    <section id="about" class="py-16 px-6 border-t border-dark-700/50 bg-dark-800/20">
+        <div class="max-w-6xl mx-auto">
+            <!-- Toggle Button -->
+            <button onclick="toggleSection('aboutBio')" class="w-full text-left group flex items-center justify-between p-4 rounded-xl border border-dark-700 hover:border-navy transition bg-dark-800/50">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">
+                        <i class="fas fa-user-astronaut text-navy mr-3"></i> About Me
+                    </h2>
+                    <p class="text-gray-500 text-sm mt-1">Mentorship · Tutoring · Familia · Volunteer · Polaroids</p>
+                </div>
+                <i class="fas fa-chevron-down text-navy text-xl transition-transform duration-300" id="aboutBioIcon"></i>
+            </button>
+
+            <!-- Toggle Content -->
+            <div id="aboutBio" class="toggle-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                    <!-- Left column -->
+                    <div class="space-y-4">
+                        <div class="bg-dark-800 rounded-xl p-5 border border-dark-700">
+                            <h4 class="text-navy font-bold text-sm uppercase tracking-wider"><i class="fas fa-chalkboard-user mr-2"></i>Mentorship</h4>
+                            <p class="text-gray-300 text-sm mt-1">Engineering Mentor at Boeing – guiding entry-level engineers in satellite quality and test integration.</p>
+                        </div>
+                        <div class="bg-dark-800 rounded-xl p-5 border border-dark-700">
+                            <h4 class="text-navy font-bold text-sm uppercase tracking-wider"><i class="fas fa-hand-holding-heart mr-2"></i>Volunteer & Familia</h4>
+                            <p class="text-gray-300 text-sm mt-1">Active volunteer supporting STEM outreach and community education. Deeply rooted in familia values.</p>
+                        </div>
+                        <div class="bg-dark-800 rounded-xl p-5 border border-dark-700">
+                            <h4 class="text-navy font-bold text-sm uppercase tracking-wider"><i class="fas fa-camera mr-2"></i>Polaroids</h4>
+                            <p class="text-gray-300 text-sm mt-1">Capturing moments – from flight line to integration lab, documenting the engineering journey.</p>
+                        </div>
+                    </div>
+                    <!-- Right column -->
+                    <div class="space-y-4">
+                        <div class="bg-dark-800 rounded-xl p-5 border border-dark-700">
+                            <h4 class="text-navy font-bold text-sm uppercase tracking-wider"><i class="fas fa-university mr-2"></i>Education</h4>
+                            <ul class="text-gray-300 text-sm space-y-1 mt-1">
+                                <li><span class="text-white">M.Sc. Aerospace Eng.</span> – Washington Univ. St. Louis (GPA: 3.90)</li>
+                                <li><span class="text-white">B.Sc. Mechanical Eng.</span> – Univ. of Cincinnati (GPA: 3.10)</li>
+                                <li><span class="text-white">1st Year Portuguese</span> – UC San Diego</li>
+                            </ul>
+                        </div>
+                        <div class="bg-dark-800 rounded-xl p-5 border border-dark-700">
+                            <h4 class="text-navy font-bold text-sm uppercase tracking-wider"><i class="fas fa-trophy mr-2"></i>Leadership</h4>
+                            <ul class="text-gray-300 text-sm space-y-1 mt-1">
+                                <li>Technical Lead – Safety & Quality System Test Org</li>
+                                <li>Technical Coordinator – Test Engineering Council</li>
+                                <li>RF Safety Initiative Lead</li>
+                            </ul>
+                        </div>
+                        <div class="bg-dark-800 rounded-xl p-5 border border-navy/30">
+                            <h4 class="text-navy font-bold text-sm uppercase tracking-wider"><i class="fas fa-plane mr-2"></i>Aviator</h4>
+                            <p class="text-gray-300 text-sm mt-1">Private Pilot Ground School · 500+ hours · Flight theory enthusiast.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CONTACT SECTION -->
+    <!-- ============================================================ -->
+    <section id="contact" class="py-20 px-6 text-center max-w-3xl mx-auto border-t border-dark-700/50">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+            <i class="fas fa-paper-plane text-navy mr-3"></i>Let's Connect
         </h2>
         <p class="text-gray-400 mb-10">
-            I'm always open to interesting conversations, collaborations, or
-            engineering challenges.
+            Open to engineering challenges, collaborations, and conversations about space, flight, and innovation.
         </p>
 
         <div class="flex flex-wrap justify-center gap-6 text-3xl">
-            <!-- GitHub -->
-            <a href="#" target="_blank" class="text-gray-500 hover:text-white transition transform hover:scale-110"
-            aria-label="GitHub">
-            <i class="fab fa-github"></i>
-        </a>
-        <!-- LinkedIn -->
-        <a href="#" target="_blank" class="text-gray-500 hover:text-blue-400 transition transform hover:scale-110"
-        aria-label="LinkedIn">
-        <i class="fab fa-linkedin-in"></i>
-    </a>
-    <!-- X / Twitter -->
-    <a href="#" target="_blank" class="text-gray-500 hover:text-white transition transform hover:scale-110"
-    aria-label="X">
-    <i class="fab fa-x-twitter"></i>
-</a>
-<!-- Email -->
-<a href="mailto:hello@JoseBuilds.com" class="text-gray-500 hover:text-rose-400 transition transform hover:scale-110"
-aria-label="Email">
-<i class="fas fa-envelope"></i>
-</a>
-<!-- Resume / PDF -->
-<a href="#" target="_blank" class="text-gray-500 hover:text-emerald-400 transition transform hover:scale-110"
-aria-label="Resume">
-<i class="fas fa-file-pdf"></i>
-</a>
-</div>
+            <a href="mailto:Josearreaga1@gmail.com" class="text-gray-500 hover:text-navy transition transform hover:scale-110" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://github.com/josemanuelsurf" target="_blank" class="text-gray-500 hover:text-white transition transform hover:scale-110" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/originaljose" target="_blank" class="text-gray-500 hover:text-blue-400 transition transform hover:scale-110" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" class="text-gray-500 hover:text-navy transition transform hover:scale-110" aria-label="X">
+                <i class="fab fa-x-twitter"></i>
+            </a>
+            <a href="#" target="_blank" class="text-gray-500 hover:text-rose-400 transition transform hover:scale-110" aria-label="Resume PDF">
+                <i class="fas fa-file-pdf"></i>
+            </a>
+        </div>
 
-<!-- Direct contact card -->
-<div class="mt-12 p-6 bg-gray-900 rounded-2xl border border-gray-800 max-w-sm mx-auto">
-    <p class="text-sm text-gray-400">
-        <i class="fas fa-paper-plane text-blue-400 mr-2"></i>
-        <span class="font-mono text-gray-300">hello@JoseBuilds.com</span>
-    </p>
-</div>
-</div>
-</section>
+        <div class="mt-12 p-6 glass rounded-2xl border border-navy/30 max-w-xs mx-auto">
+            <p class="text-sm text-gray-400">
+                <i class="fas fa-paper-plane text-navy mr-2"></i>
+                <span class="font-mono text-white">Josearreaga1@gmail.com</span>
+            </p>
+            <p class="text-xs text-gray-500 mt-2">
+                <i class="fas fa-location-dot mr-1"></i> El Segundo, CA · SECRET Clearance
+            </p>
+        </div>
+    </section>
 
-<!-- ========== FOOTER ========== -->
-<footer class="py-8 px-6 text-center text-gray-600 text-sm border-t border-gray-800/50">
-    <p>&copy; <span id="year"></span> JoseBuilds. Built with
-        <i class="fas fa-heart text-rose-500 mx-1"></i>
-        using HTML & Tailwind — deployed via Vercel.
-    </p>
-</footer>
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer class="py-8 px-6 text-center text-gray-600 text-sm border-t border-dark-700/50">
+        <p>
+            &copy; <span id="year"></span> Jose M. Arreaga — Built with
+            <i class="fas fa-heart text-navy/70 mx-1"></i>
+            and a trail of engineering passion.
+        </p>
+    </footer>
 
-<script>
-    // Auto-update footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT: Toggle + Year -->
+    <!-- ============================================================ -->
+    <script>
+        // Toggle function with icon rotation
+        function toggleSection(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById(id + 'Icon');
+            if (content) {
+                content.classList.toggle('open');
+                if (icon) {
+                    icon.style.transform = content.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+                }
+            }
+        }
+
+        // Auto-update footer year
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 
 </body>
 </html>
