@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projects & Skills · Jose M. Arreaga</title>
+    <title>My Toolkit and Builds · Jose M. Arreaga</title>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -59,6 +59,24 @@
             box-shadow: 0 0 20px rgba(74, 108, 247, 0.2);
         }
 
+        .skill-tag {
+            display: inline-block;
+            padding: 0.3rem 0.75rem;
+            background: rgba(74, 108, 247, 0.08);
+            border: 1px solid rgba(74, 108, 247, 0.15);
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            transition: all 0.2s ease;
+            letter-spacing: 0.01em;
+        }
+        .skill-tag:hover {
+            background: rgba(74, 108, 247, 0.2);
+            border-color: #4A6CF7;
+            color: #e2e8f0;
+            transform: translateY(-1px);
+        }
+
         .pillar-card {
             transition: all 0.3s ease;
         }
@@ -106,6 +124,27 @@
             font-size: 1.5rem;
             flex-shrink: 0;
         }
+
+        /* Skills section inspired by abdallaahmed.icu */
+        .skills-section {
+            background: rgba(17, 17, 19, 0.4);
+            border-radius: 16px;
+            border: 1px solid rgba(74, 108, 247, 0.08);
+            padding: 2rem;
+        }
+        .skills-section h4 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #64748b;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+        .skills-section .skill-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
     </style>
 </head>
 
@@ -121,7 +160,7 @@
             </a>
             <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
                 <a href="index.html#map" class="hover:text-brand-light transition">My Path</a>
-                <a href="projects.html" class="text-brand font-medium">Projects</a>
+                <a href="projects.html" class="text-brand font-medium">Toolkit</a>
                 <a href="/Jose-M-Arreaga-Resume.pdf" target="_blank" class="resume-btn text-brand hover:text-white transition flex items-center gap-2">
                     <i class="fas fa-file-pdf text-brand"></i> Resume
                 </a>
@@ -133,7 +172,7 @@
                 </summary>
                 <div class="absolute right-4 top-16 w-48 glass rounded-xl border border-brand/30 p-4 flex flex-col space-y-3 text-sm">
                     <a href="index.html#map" class="hover:text-brand-light transition">My Path</a>
-                    <a href="projects.html" class="text-brand font-medium">Projects</a>
+                    <a href="projects.html" class="text-brand font-medium">Toolkit</a>
                     <a href="/Jose-M-Arreaga-Resume.pdf" target="_blank" class="resume-btn text-brand hover:text-white transition flex items-center gap-2 justify-center">
                         <i class="fas fa-file-pdf text-brand"></i> Resume
                     </a>
@@ -152,18 +191,90 @@
 
         <div class="max-w-4xl mx-auto text-center relative z-10">
             <h1 class="text-4xl md:text-6xl font-extrabold text-white">
-                <i class="fas fa-code text-brand mr-3"></i>Projects & Competencies
+                <i class="fas fa-toolbox text-brand mr-3"></i>My Toolkit & Builds
             </h1>
             <p class="text-lg text-gray-400 mt-3 max-w-2xl mx-auto">
-                Engineering pillars that define my approach — from software automation to hardware integration, system architecture, and technical leadership.
+                Skills, certifications, and engineering pillars that define how I build — from software automation to hardware integration and system architecture.
             </p>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SKILLS SECTION (Inspired by abdallaahmed.icu) -->
+    <!-- ============================================================ -->
+    <section class="py-6 px-6 max-w-6xl mx-auto">
+        <div class="skills-section">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- Software & Automation -->
+                <div>
+                    <h4><i class="fas fa-code text-brand mr-2"></i> Software & Automation</h4>
+                    <div class="skill-grid">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">MATLAB</span>
+                        <span class="skill-tag">C#</span>
+                        <span class="skill-tag">TCL/TK</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">CI/CD Pipelines</span>
+                        <span class="skill-tag">Test Automation</span>
+                        <span class="skill-tag">Data Visualization</span>
+                        <span class="skill-tag">Scripting</span>
+                    </div>
+                </div>
+
+                <!-- Hardware & Integration -->
+                <div>
+                    <h4><i class="fas fa-microchip text-brand mr-2"></i> Hardware & Integration</h4>
+                    <div class="skill-grid">
+                        <span class="skill-tag">RF Systems</span>
+                        <span class="skill-tag">HILT</span>
+                        <span class="skill-tag">Harness Integration</span>
+                        <span class="skill-tag">EGSE</span>
+                        <span class="skill-tag">CAD (Fusion 360)</span>
+                        <span class="skill-tag">3D Printing</span>
+                        <span class="skill-tag">FEA Analysis</span>
+                        <span class="skill-tag">Sensor Routing</span>
+                    </div>
+                </div>
+
+                <!-- Systems & Architecture -->
+                <div>
+                    <h4><i class="fas fa-sitemap text-brand mr-2"></i> Systems & Architecture</h4>
+                    <div class="skill-grid">
+                        <span class="skill-tag">MBSE</span>
+                        <span class="skill-tag">Cameo</span>
+                        <span class="skill-tag">Teamcenter</span>
+                        <span class="skill-tag">Jira</span>
+                        <span class="skill-tag">Requirements Flow-down</span>
+                        <span class="skill-tag">Interface Control (ICD)</span>
+                        <span class="skill-tag">Configuration Management</span>
+                        <span class="skill-tag">SIL/HIL Modeling</span>
+                    </div>
+                </div>
+
+                <!-- Leadership & Process -->
+                <div>
+                    <h4><i class="fas fa-users text-brand mr-2"></i> Leadership & Process</h4>
+                    <div class="skill-grid">
+                        <span class="skill-tag">Mentorship</span>
+                        <span class="skill-tag">RF Safety</span>
+                        <span class="skill-tag">Quality Assurance</span>
+                        <span class="skill-tag">Agile</span>
+                        <span class="skill-tag">CDR / TRR</span>
+                        <span class="skill-tag">Cross-functional Coordination</span>
+                        <span class="skill-tag">Test Planning</span>
+                        <span class="skill-tag">Anomaly Resolution</span>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
     <!-- ============================================================ -->
     <!-- PILLARS SECTION (4 Core Competencies) -->
     <!-- ============================================================ -->
-    <section class="py-12 px-6 max-w-6xl mx-auto">
+    <section class="py-10 px-6 max-w-6xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 
             <!-- Pillar 1: Software-in-the-Loop -->
@@ -252,7 +363,7 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- PROJECTS GRID (5 Projects) -->
+    <!-- PROJECTS GRID (6 Projects) -->
     <!-- ============================================================ -->
     <section class="py-10 px-6 max-w-6xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="projectsGrid">
@@ -386,7 +497,6 @@
 
         filterButtons.forEach(btn => {
             btn.addEventListener('click', function() {
-                // Update active state
                 filterButtons.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
 
