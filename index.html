@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JoseBuilds · Engineering Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Custom smooth scroll & subtle glow -->
+    <style>
+        html { scroll-behavior: smooth; }
+        .glow-text {
+            background: linear-gradient(135deg, #60A5FA, #A78BFA, #F472B6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.6);
+            border-color: #4B5563;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-950 text-gray-200 font-sans antialiased">
+
+    <!-- ========== HERO SECTION ========== -->
+    <section id="hero" class="min-h-screen flex items-center justify-center px-6 py-20 relative overflow-hidden">
+        <!-- Subtle background orb -->
+        <div class="absolute top-[-20%] right-[-10%] w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-[-20%] left-[-10%] w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto text-center z-10">
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-4">
+                Jose <span class="glow-text">Builds</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 font-light mb-6">
+                Software Engineer · Systems Thinker · Creator
+            </p>
+            <p class="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                I architect reliable systems, write clean code, and turn complex
+                problems into scalable solutions. Currently building the next
+                generation of developer tooling.
+            </p>
+            <div class="mt-10 flex flex-wrap justify-center gap-4">
+                <a href="#projects"
+                class="px-8 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-medium transition shadow-lg shadow-blue-600/30">
+                <i class="fas fa-code mr-2"></i> See My Work
+            </a>
+            <a href="#contact"
+            class="px-8 py-3 rounded-full border border-gray-700 hover:border-gray-400 text-gray-300 hover:text-white font-medium transition">
+            <i class="fas fa-paper-plane mr-2"></i> Contact
+        </a>
+    </div>
+</div>
+</section>
+
+<!-- ========== TECH STACK ========== -->
+<section id="tech" class="py-20 px-6 bg-gray-900/50 border-y border-gray-800">
+    <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+            <span class="glow-text">Engineering Stack</span>
+        </h2>
+        <p class="text-gray-400 text-center mb-12">Tools & technologies I work with daily</p>
+
+        <div class="flex flex-wrap justify-center gap-4">
+            <!-- Tech Tags -->
+            <span class="px-5 py-2 bg-gray-800 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition"><i class="fab fa-js-square text-yellow-400 mr-2"></i>JavaScript / TypeScript</span>
+            <span class="px-5 py-2 bg-gray-800 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition"><i class="fab fa-python text-blue-400 mr-2"></i>Python</span>
+            <span class="px-5 py-2 bg-gray-800 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition"><i class="fab fa-react text-cyan-400 mr-2"></i>React & Next.js</span>
+            <span class="px-5 py-2 bg-gray-800 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition"><i class="fas fa-database text-emerald-400 mr-2"></i>PostgreSQL / MongoDB</span>
+            <span class="px-5 py-2 bg-gray-800 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition"><i class="fas fa-cloud text-sky-400 mr-2"></i>AWS / Vercel</span>
+            <span class="px-5 py-2 bg-gray-800 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition"><i class="fas fa-code-branch text-rose-400 mr-2"></i>Docker / K8s</span>
+            <span class="px-5 py-2 bg-gray-800 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition"><i class="fab fa-golang text-blue-300 mr-2"></i>Go</span>
+            <span class="px-5 py-2 bg-gray-800 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition"><i class="fas fa-terminal text-green-400 mr-2"></i>Bash / Linux</span>
+        </div>
+    </div>
+</section>
+
+<!-- ========== PROJECTS / CAREER ========== -->
+<section id="projects" class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+            <span class="glow-text">Projects & Impact</span>
+        </h2>
+        <p class="text-gray-400 text-center mb-12">A few things I've built recently</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Project Card 1 -->
+            <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 card-hover transition duration-300">
+                <div class="w-12 h-12 rounded-xl bg-blue-600/20 flex items-center justify-center mb-4">
+                    <i class="fas fa-robot text-blue-400 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Local AI Orchestrator</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Ollama-powered microservice that routes prompts to the best local models based on context length and latency.
+                </p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                    <span class="text-xs px-3 py-1 bg-gray-800 rounded-full border border-gray-700">Go</span>
+                    <span class="text-xs px-3 py-1 bg-gray-800 rounded-full border border-gray-700">Ollama</span>
+                    <span class="text-xs px-3 py-1 bg-gray-800 rounded-full border border-gray-700">WebSockets</span>
+                </div>
+            </div>
+
+            <!-- Project Card 2 -->
+            <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 card-hover transition duration-300">
+                <div class="w-12 h-12 rounded-xl bg-purple-600/20 flex items-center justify-center mb-4">
+                    <i class="fas fa-chart-line text-purple-400 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">DevMetrics Dashboard</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Real-time observability for CI/CD pipelines, visualizing build times, test flakiness, and deployment frequency.
+                </p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                    <span class="text-xs px-3 py-1 bg-gray-800 rounded-full border border-gray-700">React</span>
+                    <span class="text-xs px-3 py-1 bg-gray-800 rounded-full border border-gray-700">D3</span>
+                    <span class="text-xs px-3 py-1 bg-gray-800 rounded-full border border-gray-700">Express</span>
+                </div>
+            </div>
+
+            <!-- Project Card 3 -->
+            <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 card-hover transition duration-300">
+                <div class="w-12 h-12 rounded-xl bg-emerald-600/20 flex items-center justify-center mb-4">
+                    <i class="fas fa-cubes text-emerald-400 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Infra-as-Code Studio</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    VS Code extension that visualizes Terraform state graphs and provides intelligent auto-complete for AWS resources.
+                </p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                    <span class="text-xs px-3 py-1 bg-gray-800 rounded-full border border-gray-700">TypeScript</span>
+                    <span class="text-xs px-3 py-1 bg-gray-800 rounded-full border border-gray-700">Terraform</span>
+                    <span class="text-xs px-3 py-1 bg-gray-800 rounded-full border border-gray-700">CDK</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========== CONTACT / LINKS ========== -->
+<section id="contact" class="py-20 px-6 bg-gray-900/50 border-t border-gray-800">
+    <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            <span class="glow-text">Let's Connect</span>
+        </h2>
+        <p class="text-gray-400 mb-10">
+            I'm always open to interesting conversations, collaborations, or
+            engineering challenges.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-6 text-3xl">
+            <!-- GitHub -->
+            <a href="#" target="_blank" class="text-gray-500 hover:text-white transition transform hover:scale-110"
+            aria-label="GitHub">
+            <i class="fab fa-github"></i>
+        </a>
+        <!-- LinkedIn -->
+        <a href="#" target="_blank" class="text-gray-500 hover:text-blue-400 transition transform hover:scale-110"
+        aria-label="LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+    </a>
+    <!-- X / Twitter -->
+    <a href="#" target="_blank" class="text-gray-500 hover:text-white transition transform hover:scale-110"
+    aria-label="X">
+    <i class="fab fa-x-twitter"></i>
+</a>
+<!-- Email -->
+<a href="mailto:hello@JoseBuilds.com" class="text-gray-500 hover:text-rose-400 transition transform hover:scale-110"
+aria-label="Email">
+<i class="fas fa-envelope"></i>
+</a>
+<!-- Resume / PDF -->
+<a href="#" target="_blank" class="text-gray-500 hover:text-emerald-400 transition transform hover:scale-110"
+aria-label="Resume">
+<i class="fas fa-file-pdf"></i>
+</a>
+</div>
+
+<!-- Direct contact card -->
+<div class="mt-12 p-6 bg-gray-900 rounded-2xl border border-gray-800 max-w-sm mx-auto">
+    <p class="text-sm text-gray-400">
+        <i class="fas fa-paper-plane text-blue-400 mr-2"></i>
+        <span class="font-mono text-gray-300">hello@JoseBuilds.com</span>
+    </p>
+</div>
+</div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="py-8 px-6 text-center text-gray-600 text-sm border-t border-gray-800/50">
+    <p>&copy; <span id="year"></span> JoseBuilds. Built with
+        <i class="fas fa-heart text-rose-500 mx-1"></i>
+        using HTML & Tailwind — deployed via Vercel.
+    </p>
+</footer>
+
+<script>
+    // Auto-update footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
